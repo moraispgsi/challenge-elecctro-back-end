@@ -502,7 +502,7 @@ var startServer = function () {
               isSecure: false,
               clientId: process.env.clientId,
               clientSecret: process.env.clientSecret,
-              location: server.info.uri
+              location: process.env.redirectURL
             });
 
             server.auth.strategy('session', 'cookie', {

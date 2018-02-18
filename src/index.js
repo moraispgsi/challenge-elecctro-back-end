@@ -285,7 +285,7 @@ const routeIndex = {
       }
     }
   }
-}
+};
 
 const server = Hapi.server({ host: '0.0.0.0', port: process.env.PORT });
 
@@ -301,7 +301,7 @@ async function startServer() {
     isSecure: false,
     clientId: process.env.clientId,
     clientSecret: process.env.clientSecret,
-    location: server.info.uri
+    location: process.env.redirectURL
   });
 
   server.auth.strategy('session', 'cookie', {
