@@ -240,7 +240,7 @@ const routeLogin = {
   method: ['GET', 'POST'], // Must handle both GET and POST
   path: '/login',          // The callback endpoint registered with the provider
   config: {
-    auth: 'google',
+    auth: 'custom',
     handler: function (request, h) {
 
       if (!request.auth.isAuthenticated) {
@@ -296,8 +296,8 @@ async function startServer() {
 
   await addUser('root', 'root');
 
-  server.auth.strategy('google', 'bell', {
-    provider: 'google',
+  server.auth.strategy('custom', 'bell', {
+    provider: 'custom',
     password: process.env.password,
     isSecure: false,
     clientId: process.env.clientId,
