@@ -241,10 +241,10 @@ const routeLogin = {
   path: '/login',          // The callback endpoint registered with the provider
   config: {
     auth: 'google',
-    handler: function (request, reply) {
+    handler: function (request, h) {
 
       if (!request.auth.isAuthenticated) {
-        return reply('Authentication failed due to: ' + request.auth.error.message);
+        return 'Authentication failed due to: ' + request.auth.error.message;
       }
 
       console.log('registration');
@@ -252,7 +252,7 @@ const routeLogin = {
       // and redirect to the application. The third-party credentials are
       // stored in request.auth.credentials. Any query parameters from
       // the initial request are passed back via request.auth.credentials.query.
-      return reply.redirect('/');
+      return 'Teste';
     }
   }
 };
