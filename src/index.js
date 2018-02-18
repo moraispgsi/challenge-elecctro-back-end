@@ -237,13 +237,10 @@ const routeRemoveTodo = {
 };
 
 const routeLogin = {
-  method: 'GET', // Must handle both GET and POST
+  method: ['GET', 'POST'], // Must handle both GET and POST
   path: '/login',          // The callback endpoint registered with the provider
   config: {
-    auth: {
-      strategy: 'google',
-      mode: 'try'
-    },
+    auth: 'google',
     handler: function (request, h) {
 
       if (!request.auth.isAuthenticated) {
