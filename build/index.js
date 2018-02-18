@@ -498,15 +498,15 @@ var startServer = function () {
 
             server.auth.strategy('google', 'bell', {
               provider: 'google',
-              password: '645qpyEx7r%8CbJUH1^ELW79EsABorJ1',
+              password: process.env.password,
               isSecure: false,
-              clientId: '27876400805-k9csbr7cn98aaoppqer6mk7qddm117b6.apps.googleusercontent.com',
-              clientSecret: 'k7iQvJnNwdeS75j3y4DGwB_o',
+              clientId: process.env.clientId,
+              clientSecret: process.env.clientSecret,
               location: server.info.uri
             });
 
             server.auth.strategy('session', 'cookie', {
-              password: '645qpyEx7r%8CbJUH1^ELW79EsABorJ1', //used for cookie-encoding, the string could be anything
+              password: process.env.password, //used for cookie-encoding, the string could be anything
               cookie: 'sid',
               redirectTo: '/login',
               redirectOnTry: false,
@@ -751,6 +751,6 @@ var routeIndex = {
   }
 };
 
-var server = _hapi2.default.server({ host: 'localhost', port: 8000 });
+var server = _hapi2.default.server({ host: '0.0.0.0', port: process.env.PORT });
 
 startServer();
