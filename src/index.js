@@ -238,7 +238,7 @@ const routeRemoveTodo = {
 
 const routeLogin = {
   method: '*', // Must handle both GET and POST
-  path: '/TEST',          // The callback endpoint registered with the provider
+  path: '/login',          // The callback endpoint registered with the provider
   config: {
     auth: {
       strategy: 'google',
