@@ -60,8 +60,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-97">
-              <caret line="269" column="19" lean-forward="false" selection-start-line="269" selection-start-column="19" selection-end-line="269" selection-end-column="19" />
+            <state relative-caret-position="231">
+              <caret line="328" column="6" lean-forward="false" selection-start-line="328" selection-start-column="6" selection-end-line="328" selection-end-column="6" />
               <folding>
                 <element signature="e#15#38#0" expanded="true" />
                 <element signature="n#!!block;n#createTask#0" expanded="false" />
@@ -71,10 +71,6 @@
                 <element signature="n#!!block;n#addTask#0" expanded="false" />
                 <element signature="n#!!block;n#removeTask#0" expanded="false" />
                 <element signature="n#!!block;n#editTask#0" expanded="false" />
-                <element signature="e#3172#4287#0" expanded="false" />
-                <element signature="e#4313#4748#0" expanded="false" />
-                <element signature="e#4775#5383#0" expanded="false" />
-                <element signature="e#5410#5744#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -289,12 +285,12 @@
       <option name="presentableId" value="Default" />
       <updated>1518922021676</updated>
       <workItem from="1518922023415" duration="4577000" />
-      <workItem from="1518929063378" duration="41249000" />
+      <workItem from="1518929063378" duration="41461000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45826000" />
+    <option name="totallyTimeSpent" value="46038000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
@@ -326,7 +322,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -376,10 +372,6 @@
             <element signature="n#!!block;n#addTask#0" expanded="false" />
             <element signature="n#!!block;n#removeTask#0" expanded="false" />
             <element signature="n#!!block;n#editTask#0" expanded="false" />
-            <element signature="e#3172#4287#0" expanded="false" />
-            <element signature="e#4313#4748#0" expanded="false" />
-            <element signature="e#4775#5383#0" expanded="false" />
-            <element signature="e#5410#5744#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -427,8 +419,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-97">
-          <caret line="269" column="19" lean-forward="false" selection-start-line="269" selection-start-column="19" selection-end-line="269" selection-end-column="19" />
+        <state relative-caret-position="231">
+          <caret line="328" column="6" lean-forward="false" selection-start-line="328" selection-start-column="6" selection-end-line="328" selection-end-column="6" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
             <element signature="n#!!block;n#createTask#0" expanded="false" />
@@ -438,10 +430,6 @@
             <element signature="n#!!block;n#addTask#0" expanded="false" />
             <element signature="n#!!block;n#removeTask#0" expanded="false" />
             <element signature="n#!!block;n#editTask#0" expanded="false" />
-            <element signature="e#3172#4287#0" expanded="false" />
-            <element signature="e#4313#4748#0" expanded="false" />
-            <element signature="e#4775#5383#0" expanded="false" />
-            <element signature="e#5410#5744#0" expanded="false" />
           </folding>
         </state>
       </provider>

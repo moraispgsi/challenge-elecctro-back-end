@@ -514,7 +514,10 @@ var startServer = function () {
               isSecure: false
             });
             */
-            server.route([routeAddTodos, routeUpdateTodo, routeGetTodos, routeRemoveTodo, routeLogin, routeLogout, routeIndex]);
+            server.route([routeAddTodos, routeUpdateTodo, routeGetTodos, routeRemoveTodo, routeLogin]
+            //routeLogout,
+            //routeIndex
+            );
 
             server.auth.default('session');
             _context11.next = 11;

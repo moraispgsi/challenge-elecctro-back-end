@@ -326,8 +326,8 @@ async function startServer() {
     routeGetTodos,
     routeRemoveTodo,
     routeLogin,
-    routeLogout,
-    routeIndex
+    //routeLogout,
+    //routeIndex
   ]);
 
   server.auth.default('session');
