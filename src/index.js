@@ -278,7 +278,7 @@ const loginRoute = {
 
 const logoutHandler = async (request, h) => {
   request.cookieAuth.clear();
-  return h.redirect('https://accounts.google.com/logout');
+  return h.redirect(`https://accounts.google.com/logout?&continue=${REDIRECT_URL}`);
 };
 
 const logoutConfig = {
