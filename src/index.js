@@ -12,13 +12,26 @@ import Inert from 'inert'
 import Lout from 'lout'
 
 import CookieAuth from 'hapi-auth-cookie'
-import UserCache from './user-cache'
-import TaskCache, { COMPLETE, INCOMPLETE, DATE_ADDED, DESCRIPTION, ALL } from './task-cache'
+import User, { COMPLETE, INCOMPLETE, DATE_ADDED, DESCRIPTION, ALL } from './user'
+
+if(!process.env.CLIENT_ID) {
+  throw new Error('CLIENT_ID environmental variable is required');
+}
+if(!process.env.CLIENT_SECRET) {
+  throw new Error('CLIENT_SECRET environmental variable is required');
+}
+
+const PASSWORD = process.env.PASSWORD || 'Password with at least 32 characters';
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const PORT = process.env.PORT || 8000;
+const REDIRECT_URL = process.env.REDIRECT_URL || 'http://localhost:' + PORT;
+
+const UUID_VERSIONS = [
+  'uuidv4'
+];
 
 const client = new Client(catboxMemory);
-const userCache = new UserCache(client);
-const taskCache = new TaskCache(client);
-
 
 const baseHandler = async (request, h) => {
   return 'HOME';
@@ -45,7 +58,11 @@ const baseRoute = {
 //
 
 const getTasksHandler = async (request, h) => {
-  const tasks = await taskCache.getTasks();
+  if (!request.auth.isAuthenticated) {
+    return Boom.unauthorized(request.auth.error.message);
+  }
+  const user = request.auth.credentials;
+  const tasks = user.getTasks();
   return tasks.filter((task) => {
     switch(request.query.filter){
       case ALL:
@@ -100,7 +117,13 @@ const getTasksRoute = {
 //
 
 const addTaskHandler = async (request, h) => {
-  return await taskCache.addTask(request.payload.description);
+  if (!request.auth.isAuthenticated) {
+    return Boom.unauthorized(request.auth.error.message);
+  }
+  const user = request.auth.credentials;
+  const result = user.addTask(request.payload.description);
+  user.save();
+  return result;
 };
 
 const addTaskValidate = {
@@ -134,20 +157,25 @@ const addTaskRoute =  {
 //
 
 const updateTaskHandler = async (request, h) => {
-  return await taskCache.editTask(request.params.id, request.payload.state, request.payload.description);
+  if (!request.auth.isAuthenticated) {
+    return Boom.unauthorized(request.auth.error.message);
+  }
+  const user = request.auth.credentials;
+  const result = user.editTask(request.params.id, request.payload.state, request.payload.description);
+  user.save();
+  return result;
 };
 
 const updateTaskValidate = {
   params: {
-    id: Joi.string().required()
+    id: Joi.string().guid({ version: UUID_VERSIONS }).required()
   },
   payload: Joi.object().keys({
     state: Joi.string().valid(COMPLETE, INCOMPLETE),
     description: Joi.string()
   }).or('state', 'description'),
   failAction: (request, h, error) => {
-    //TODO - 400 status for the payload and 404 for params
-    return Boom.boomify(error, { statusCode: 404 });
+    return Boom.boomify(error, { statusCode: 400 });
   }
 };
 
@@ -173,12 +201,19 @@ const updateTaskRoute = {
 //
 
 const removeTaskHandler = (request, h) => {
-  return taskCache.removeTask(request.params.id);
+  if (!request.auth.isAuthenticated) {
+    return Boom.unauthorized(request.auth.error.message);
+  }
+
+  const user = request.auth.credentials;
+  const result = user.removeTask(request.params.id);
+  user.save();
+  return result;
 };
 
 const removeTaskValidate = {
   params: {
-    id: Joi.string().required()
+    id: Joi.string().guid({ version:  UUID_VERSIONS }).required()
   },
   failAction: (request, h, error) => {
     return Boom.boomify(error, { statusCode: 404 });
@@ -209,11 +244,12 @@ const removeTaskRoute = {
 const loginHandler = async (request, h) => {
 
   if (!request.auth.isAuthenticated) {
-    return 'Authentication failed with error: '  + request.auth.error.message;
+    return Boom.unauthorized(request.auth.error.message);
   }
 
+  //Creating new user
   const profile = request.auth.credentials;
-  const user = await userCache.addUser(profile);
+  const user = await User.addUser(client, profile, []);
   request.cookieAuth.set({ sid: user.id });
 
   return h.redirect('/');
@@ -234,13 +270,38 @@ const loginRoute = {
 };
 
 
+//  __    _____ _____ _____ _____ _____
+// |  |  |     |   __|     |  |  |_   _|
+// |  |__|  |  |  |  |  |  |  |  | | |
+// |_____|_____|_____|_____|_____| |_|
+//
+
+const logoutHandler = async (request, h) => {
+  request.cookieAuth.clear();
+  return h.redirect('https://accounts.google.com/logout');
+};
+
+const logoutConfig = {
+  auth: {
+    strategy: 'session',
+  },
+  handler: logoutHandler
+};
+
+const logoutRoute = {
+  method: 'GET',
+  path: '/logout',
+  config: logoutConfig
+};
+
+
 //  _____ _____ _____ _____ _____ _____
 // |   __|   __| __  |  |  |   __| __  |
 // |__   |   __|    -|  |  |   __|    -|
 // |_____|_____|__|__|\___/|_____|__|__|
 //
 
-const server = Hapi.server({ host: '0.0.0.0', port: process.env.PORT });
+const server = Hapi.server({ host: '0.0.0.0', port: PORT });
 
 async function startServer() {
   await client.start();
@@ -248,28 +309,32 @@ async function startServer() {
 
   server.auth.strategy('google', 'bell', {
     provider: 'google',
-    password: process.env.password,
     isSecure: false,
-    clientId: process.env.clientId,
-    clientSecret: process.env.clientSecret,
-    location: process.env.redirectURL,
+    password: PASSWORD,
+    clientId: CLIENT_ID,
+    clientSecret: CLIENT_SECRET,
+    location: REDIRECT_URL,
   });
 
   server.auth.strategy('session', 'cookie', {
-    password: process.env.password, //used for cookie-encoding, the string could be anything
+    password: PASSWORD, //used for cookie-encoding, the string could be anything
     cookie: 'sid',
     redirectTo: '/login',
     redirectOnTry: false,
     isSecure: false,
-    validateFunc: async (request, session, callback) => {
-      const user = await userCache.hasUser(session.sid);
-      const out = {
-        valid: !!user
-      };
-      if (out.valid) {
-        out.credentials = user.profile;
+    validateFunc: async (request, session) => {
+
+      console.log('ValidateFunc', session.sid)
+      if(!session.sid) {
+        return {
+          valid: false
+        }
       }
-      return out;
+      const user = await User.getUser(client, session.sid);
+      return {
+        valid: await User.hasUser(client, session.sid),
+        credentials: user
+      };
     }
   });
 
@@ -279,7 +344,8 @@ async function startServer() {
     addTaskRoute,
     updateTaskRoute,
     removeTaskRoute,
-    loginRoute
+    loginRoute,
+    logoutRoute
   ]);
 
   server.auth.default('session');
@@ -287,7 +353,7 @@ async function startServer() {
   console.log('Server running at:', server.info.uri);
 }
 
-startServer();
+startServer().then();
 
 
 

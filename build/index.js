@@ -1,76 +1,91 @@
 "use strict";
 
 var startServer = function () {
-  var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
     var _this = this;
 
-    return regeneratorRuntime.wrap(function _callee7$(_context7) {
+    return regeneratorRuntime.wrap(function _callee8$(_context8) {
       while (1) {
-        switch (_context7.prev = _context7.next) {
+        switch (_context8.prev = _context8.next) {
           case 0:
-            _context7.next = 2;
+            _context8.next = 2;
             return client.start();
 
           case 2:
-            _context7.next = 4;
+            _context8.next = 4;
             return server.register([_bell2.default, _hapiAuthCookie2.default, _vision2.default, _inert2.default, _lout2.default]);
 
           case 4:
 
             server.auth.strategy('google', 'bell', {
               provider: 'google',
-              password: process.env.password,
               isSecure: false,
-              clientId: process.env.clientId,
-              clientSecret: process.env.clientSecret,
-              location: process.env.redirectURL
+              password: PASSWORD,
+              clientId: CLIENT_ID,
+              clientSecret: CLIENT_SECRET,
+              location: REDIRECT_URL
             });
 
             server.auth.strategy('session', 'cookie', {
-              password: process.env.password, //used for cookie-encoding, the string could be anything
+              password: PASSWORD, //used for cookie-encoding, the string could be anything
               cookie: 'sid',
               redirectTo: '/login',
               redirectOnTry: false,
               isSecure: false,
               validateFunc: function () {
-                var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(request, session, callback) {
-                  var user, out;
-                  return regeneratorRuntime.wrap(function _callee6$(_context6) {
+                var _ref8 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(request, session) {
+                  var user;
+                  return regeneratorRuntime.wrap(function _callee7$(_context7) {
                     while (1) {
-                      switch (_context6.prev = _context6.next) {
+                      switch (_context7.prev = _context7.next) {
                         case 0:
-                          _context6.next = 2;
-                          return userCache.hasUser(session.sid);
 
-                        case 2:
-                          user = _context6.sent;
-                          out = {
-                            valid: !!user
-                          };
+                          console.log('ValidateFunc', session.sid);
 
-                          if (out.valid) {
-                            out.credentials = user.profile;
+                          if (session.sid) {
+                            _context7.next = 3;
+                            break;
                           }
-                          return _context6.abrupt('return', out);
 
-                        case 6:
+                          return _context7.abrupt('return', {
+                            valid: false
+                          });
+
+                        case 3:
+                          _context7.next = 5;
+                          return _user2.default.getUser(client, session.sid);
+
+                        case 5:
+                          user = _context7.sent;
+                          _context7.next = 8;
+                          return _user2.default.hasUser(client, session.sid);
+
+                        case 8:
+                          _context7.t0 = _context7.sent;
+                          _context7.t1 = user;
+                          return _context7.abrupt('return', {
+                            valid: _context7.t0,
+                            credentials: _context7.t1
+                          });
+
+                        case 11:
                         case 'end':
-                          return _context6.stop();
+                          return _context7.stop();
                       }
                     }
-                  }, _callee6, _this);
+                  }, _callee7, _this);
                 }));
 
-                return function validateFunc(_x11, _x12, _x13) {
-                  return _ref7.apply(this, arguments);
+                return function validateFunc(_x13, _x14) {
+                  return _ref8.apply(this, arguments);
                 };
               }()
             });
 
-            server.route([baseRoute, getTasksRoute, addTaskRoute, updateTaskRoute, removeTaskRoute, loginRoute]);
+            server.route([baseRoute, getTasksRoute, addTaskRoute, updateTaskRoute, removeTaskRoute, loginRoute, logoutRoute]);
 
             server.auth.default('session');
-            _context7.next = 10;
+            _context8.next = 10;
             return server.start();
 
           case 10:
@@ -78,14 +93,14 @@ var startServer = function () {
 
           case 11:
           case 'end':
-            return _context7.stop();
+            return _context8.stop();
         }
       }
-    }, _callee7, this);
+    }, _callee8, this);
   }));
 
   return function startServer() {
-    return _ref6.apply(this, arguments);
+    return _ref7.apply(this, arguments);
   };
 }();
 
@@ -131,21 +146,30 @@ var _hapiAuthCookie = require('hapi-auth-cookie');
 
 var _hapiAuthCookie2 = _interopRequireDefault(_hapiAuthCookie);
 
-var _userCache = require('./user-cache');
+var _user = require('./user');
 
-var _userCache2 = _interopRequireDefault(_userCache);
-
-var _taskCache = require('./task-cache');
-
-var _taskCache2 = _interopRequireDefault(_taskCache);
+var _user2 = _interopRequireDefault(_user);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+if (!process.env.CLIENT_ID) {
+  throw new Error('CLIENT_ID environmental variable is required');
+}
+if (!process.env.CLIENT_SECRET) {
+  throw new Error('CLIENT_SECRET environmental variable is required');
+}
+
+var PASSWORD = process.env.PASSWORD || 'Password with at least 32 characters';
+var CLIENT_ID = process.env.CLIENT_ID;
+var CLIENT_SECRET = process.env.CLIENT_SECRET;
+var PORT = process.env.PORT || 8000;
+var REDIRECT_URL = process.env.REDIRECT_URL || 'http://localhost:' + PORT;
+
+var UUID_VERSIONS = ['uuidv4'];
+
 var client = new _catbox.Client(_catboxMemory2.default);
-var userCache = new _userCache2.default(client);
-var taskCache = new _taskCache2.default(client);
 
 var baseHandler = function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(request, h) {
@@ -189,38 +213,43 @@ var baseRoute = {
 
 var getTasksHandler = function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(request, h) {
-    var tasks;
+    var user, tasks;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.next = 2;
-            return taskCache.getTasks();
+            if (request.auth.isAuthenticated) {
+              _context2.next = 2;
+              break;
+            }
+
+            return _context2.abrupt('return', _boom2.default.unauthorized(request.auth.error.message));
 
           case 2:
-            tasks = _context2.sent;
+            user = request.auth.credentials;
+            tasks = user.getTasks();
             return _context2.abrupt('return', tasks.filter(function (task) {
               switch (request.query.filter) {
-                case _taskCache.ALL:
+                case _user.ALL:
                   return true;
-                case _taskCache.COMPLETE:
-                  return task.state === _taskCache.COMPLETE;
-                case _taskCache.INCOMPLETE:
-                  return task.state === _taskCache.INCOMPLETE;
+                case _user.COMPLETE:
+                  return task.state === _user.COMPLETE;
+                case _user.INCOMPLETE:
+                  return task.state === _user.INCOMPLETE;
                 default:
                   return true;
               }
             }).sort(function (taskA, taskB) {
               switch (request.query.orderBy) {
-                case _taskCache.DESCRIPTION:
+                case _user.DESCRIPTION:
                   return taskA.description.localeCompare(taskB.description);
                   break;
-                case _taskCache.DATE_ADDED:
+                case _user.DATE_ADDED:
                   return new Date(taskA.dateAdded) > new Date(taskB.dateAdded);
               }
             }));
 
-          case 4:
+          case 5:
           case 'end':
             return _context2.stop();
         }
@@ -235,8 +264,8 @@ var getTasksHandler = function () {
 
 var getTasksValidate = {
   query: {
-    filter: _joi2.default.string().valid(_taskCache.COMPLETE, _taskCache.INCOMPLETE, _taskCache.ALL).optional(),
-    orderBy: _joi2.default.string().valid(_taskCache.DESCRIPTION, _taskCache.DATE_ADDED).optional()
+    filter: _joi2.default.string().valid(_user.COMPLETE, _user.INCOMPLETE, _user.ALL).optional(),
+    orderBy: _joi2.default.string().valid(_user.DESCRIPTION, _user.DATE_ADDED).optional()
   },
   failAction: function failAction(request, h, error) {
     return _boom2.default.boomify(error, { statusCode: 400 });
@@ -265,17 +294,26 @@ var getTasksRoute = {
 
 var addTaskHandler = function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(request, h) {
+    var user, result;
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            _context3.next = 2;
-            return taskCache.addTask(request.payload.description);
+            if (request.auth.isAuthenticated) {
+              _context3.next = 2;
+              break;
+            }
+
+            return _context3.abrupt('return', _boom2.default.unauthorized(request.auth.error.message));
 
           case 2:
-            return _context3.abrupt('return', _context3.sent);
+            user = request.auth.credentials;
+            result = user.addTask(request.payload.description);
 
-          case 3:
+            user.save();
+            return _context3.abrupt('return', result);
+
+          case 6:
           case 'end':
             return _context3.stop();
         }
@@ -319,17 +357,26 @@ var addTaskRoute = {
 
 var updateTaskHandler = function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(request, h) {
+    var user, result;
     return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            _context4.next = 2;
-            return taskCache.editTask(request.params.id, request.payload.state, request.payload.description);
+            if (request.auth.isAuthenticated) {
+              _context4.next = 2;
+              break;
+            }
+
+            return _context4.abrupt('return', _boom2.default.unauthorized(request.auth.error.message));
 
           case 2:
-            return _context4.abrupt('return', _context4.sent);
+            user = request.auth.credentials;
+            result = user.editTask(request.params.id, request.payload.state, request.payload.description);
 
-          case 3:
+            user.save();
+            return _context4.abrupt('return', result);
+
+          case 6:
           case 'end':
             return _context4.stop();
         }
@@ -344,15 +391,14 @@ var updateTaskHandler = function () {
 
 var updateTaskValidate = {
   params: {
-    id: _joi2.default.string().required()
+    id: _joi2.default.string().guid({ version: UUID_VERSIONS }).required()
   },
   payload: _joi2.default.object().keys({
-    state: _joi2.default.string().valid(_taskCache.COMPLETE, _taskCache.INCOMPLETE),
+    state: _joi2.default.string().valid(_user.COMPLETE, _user.INCOMPLETE),
     description: _joi2.default.string()
   }).or('state', 'description'),
   failAction: function failAction(request, h, error) {
-    //TODO - 400 status for the payload and 404 for params
-    return _boom2.default.boomify(error, { statusCode: 404 });
+    return _boom2.default.boomify(error, { statusCode: 400 });
   }
 };
 
@@ -377,12 +423,19 @@ var updateTaskRoute = {
 //
 
 var removeTaskHandler = function removeTaskHandler(request, h) {
-  return taskCache.removeTask(request.params.id);
+  if (!request.auth.isAuthenticated) {
+    return _boom2.default.unauthorized(request.auth.error.message);
+  }
+
+  var user = request.auth.credentials;
+  var result = user.removeTask(request.params.id);
+  user.save();
+  return result;
 };
 
 var removeTaskValidate = {
   params: {
-    id: _joi2.default.string().required()
+    id: _joi2.default.string().guid({ version: UUID_VERSIONS }).required()
   },
   failAction: function failAction(request, h, error) {
     return _boom2.default.boomify(error, { statusCode: 404 });
@@ -421,12 +474,14 @@ var loginHandler = function () {
               break;
             }
 
-            return _context5.abrupt('return', 'Authentication failed with error: ' + request.auth.error.message);
+            return _context5.abrupt('return', _boom2.default.unauthorized(request.auth.error.message));
 
           case 2:
+
+            //Creating new user
             profile = request.auth.credentials;
             _context5.next = 5;
-            return userCache.addUser(profile);
+            return _user2.default.addUser(client, profile, []);
 
           case 5:
             user = _context5.sent;
@@ -461,12 +516,53 @@ var loginRoute = {
   config: loginConfig
 };
 
+//  __    _____ _____ _____ _____ _____
+// |  |  |     |   __|     |  |  |_   _|
+// |  |__|  |  |  |  |  |  |  |  | | |
+// |_____|_____|_____|_____|_____| |_|
+//
+
+var logoutHandler = function () {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(request, h) {
+    return regeneratorRuntime.wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            request.cookieAuth.clear();
+            return _context6.abrupt('return', h.redirect('https://accounts.google.com/logout'));
+
+          case 2:
+          case 'end':
+            return _context6.stop();
+        }
+      }
+    }, _callee6, undefined);
+  }));
+
+  return function logoutHandler(_x11, _x12) {
+    return _ref6.apply(this, arguments);
+  };
+}();
+
+var logoutConfig = {
+  auth: {
+    strategy: 'session'
+  },
+  handler: logoutHandler
+};
+
+var logoutRoute = {
+  method: 'GET',
+  path: '/logout',
+  config: logoutConfig
+};
+
 //  _____ _____ _____ _____ _____ _____
 // |   __|   __| __  |  |  |   __| __  |
 // |__   |   __|    -|  |  |   __|    -|
 // |_____|_____|__|__|\___/|_____|__|__|
 //
 
-var server = _hapi2.default.server({ host: '0.0.0.0', port: process.env.PORT });
+var server = _hapi2.default.server({ host: '0.0.0.0', port: PORT });
 
-startServer();
+startServer().then();

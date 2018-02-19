@@ -18,6 +18,15 @@ The result is hosted as a GitHub page. It can be found at
 * [lout](https://github.com/hapijs/joi) - Automatic generation of API documentation
 * [joi](https://github.com/hapijs/joi) - Validation schema
 
+## Environment
+
+* PASSWORD - For the authentication strategies 
+* CLIENT_ID - Google APP ID
+* CLIENT_SECRET - Google APP secret
+* REDIRECT_URL - Redirect URL e.g. http://localhost:8000
+* PORT - Server port
+
+
 
 ## Author
 

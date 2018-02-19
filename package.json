@@ -7,7 +7,7 @@
     "start": "node index.js",
     "dev": "npm run build && node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src --out-file ./build/index.compiled.js"
+    "build": "babel src -d build"
   },
   "repository": {
     "type": "git",
