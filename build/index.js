@@ -711,7 +711,7 @@ var routeLogin = {
     handler: function handler(request, h) {
 
       if (!request.auth.isAuthenticated) {
-        return 'Authentication failed due to: ' + request.auth.error.message;
+        return 'Authentication failed due to: ' + JSON.stringify(request.auth.error);
       }
 
       console.log('registration');
