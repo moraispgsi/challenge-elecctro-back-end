@@ -138,6 +138,9 @@ const routeGetTodos = {
   method: 'GET',
   path: '/todos',
   config: {
+    auth: {
+      strategy: 'google'
+    },
     handler: (request, h) => {
       return getTasks().then((tasks) => {
 

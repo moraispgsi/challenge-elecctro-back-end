@@ -606,6 +606,9 @@ var routeGetTodos = {
   method: 'GET',
   path: '/todos',
   config: {
+    auth: {
+      strategy: 'google'
+    },
     handler: function handler(request, h) {
       return getTasks().then(function (tasks) {
 
