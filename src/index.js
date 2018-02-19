@@ -312,7 +312,6 @@ async function startServer() {
     clientId: process.env.clientId,
     clientSecret: process.env.clientSecret,
     location: process.env.redirectURL,
-    redirectTo: '/bell/door'
   });
 
   /*
