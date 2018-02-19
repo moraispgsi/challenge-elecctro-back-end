@@ -710,11 +710,11 @@ var routeLogin = {
     },
     handler: function handler(request, h) {
 
+      console.log(JSON.stringify(request.auth.credentials, null, 4));
       if (!request.auth.isAuthenticated) {
         return 'Authentication failed';
       }
 
-      JSON.stringify(request.auth.credentials, null, 4);
       // Perform any account lookup or registration, setup local session,
       // and redirect to the application. The third-party credentials are
       // stored in request.auth.credentials. Any query parameters from
