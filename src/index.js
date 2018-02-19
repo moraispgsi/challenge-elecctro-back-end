@@ -237,8 +237,8 @@ const routeRemoveTodo = {
 };
 
 const routeLogin = {
-  method: ['GET', 'POST'], // Must handle both GET and POST
-  path: '/login',          // The callback endpoint registered with the provider
+  method: '*', // Must handle both GET and POST
+  path: '/TEST',          // The callback endpoint registered with the provider
   config: {
     auth: {
       strategy: 'google',
@@ -247,10 +247,10 @@ const routeLogin = {
     handler: function (request, h) {
 
       if (!request.auth.isAuthenticated) {
-        return 'Authentication failed due to: ' + JSON.stringify(request.auth.error);
+        return 'Authentication failed';
       }
 
-      console.log('registration');
+      JSON.stringify(request.auth.credentials, null, 4)
       // Perform any account lookup or registration, setup local session,
       // and redirect to the application. The third-party credentials are
       // stored in request.auth.credentials. Any query parameters from
