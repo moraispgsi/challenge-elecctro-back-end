@@ -514,19 +514,16 @@ var startServer = function () {
               isSecure: false
             });
             */
-            server.route([routeAddTodos, routeUpdateTodo, routeGetTodos, routeRemoveTodo, routeLogin]
-            //routeLogout,
-            //routeIndex
-            );
+            server.route([routeAddTodos, routeUpdateTodo, routeGetTodos, routeRemoveTodo, routeLogin]);
 
-            server.auth.default('google');
-            _context11.next = 11;
+            //server.auth.default('google');
+            _context11.next = 10;
             return server.start();
 
-          case 11:
+          case 10:
             console.log('Server running at:', server.info.uri);
 
-          case 12:
+          case 11:
           case 'end':
             return _context11.stop();
         }
@@ -727,37 +724,6 @@ var routeLogin = {
       // stored in request.auth.credentials. Any query parameters from
       // the initial request are passed back via request.auth.credentials.query.
       return 'Teste';
-    }
-  }
-};
-
-var routeLogout = {
-  method: 'GET',
-  path: '/logout',
-  options: {
-    handler: function handler(request, h) {
-      request.server.app.cache.drop(request.state['sid-example'].sid);
-      request.cookieAuth.clear();
-      return 'logged out';
-    }
-  }
-};
-
-var routeIndex = {
-  method: 'GET',
-  path: '/',
-  config: {
-    auth: {
-      strategy: 'google', //authorisation is of 'hapi-auth-cookie' type
-      mode: 'try' //allows you to proceed to a path handler even if not authenticated
-    },
-    handler: function handler(request, h) {
-      if (request.auth.isAuthenticated) {
-        //isAuthenticated is true if the user has successfully logged in
-        return 'good';
-      } else {
-        return 'bad';
-      }
     }
   }
 };

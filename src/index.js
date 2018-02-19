@@ -10,7 +10,6 @@ import Bell from 'bell'
 import CookieAuth from 'hapi-auth-cookie'
 import passwordHash from 'password-hash'
 
-
 const ALL = 'ALL';
 const COMPLETE = 'COMPLETE';
 const INCOMPLETE = 'INCOMPLETE';
@@ -18,7 +17,6 @@ const DESCRIPTION = 'DESCRIPTION';
 const DATE_ADDED = 'DATE_ADDED';
 
 const client = new Client(catboxMemory);
-
 
 function createUser(username, password) {
   return {
@@ -240,6 +238,10 @@ const routeRemoveTodo = {
   }
 };
 
+
+
+
+
 const routeLogin = {
   method: '*', // Must handle both GET and POST
   path: '/bell/door',          // The callback endpoint registered with the provider
@@ -262,37 +264,6 @@ const routeLogin = {
       // stored in request.auth.credentials. Any query parameters from
       // the initial request are passed back via request.auth.credentials.query.
       return 'Teste';
-    }
-  }
-};
-
-const routeLogout = {
-  method: 'GET',
-  path: '/logout',
-  options: {
-    handler: (request, h) => {
-      request.server.app.cache.drop(request.state['sid-example'].sid);
-      request.cookieAuth.clear();
-      return 'logged out';
-    }
-  }
-};
-
-const routeIndex = {
-  method: 'GET',
-  path: '/',
-  config: {
-    auth: {
-      strategy: 'google', //authorisation is of 'hapi-auth-cookie' type
-      mode: 'try' //allows you to proceed to a path handler even if not authenticated
-    },
-    handler: function (request, h) {
-      if(request.auth.isAuthenticated) { //isAuthenticated is true if the user has successfully logged in
-        return 'good';
-      }
-      else {
-        return 'bad';
-      }
     }
   }
 };
@@ -328,12 +299,10 @@ async function startServer() {
     routeUpdateTodo,
     routeGetTodos,
     routeRemoveTodo,
-    routeLogin,
-    //routeLogout,
-    //routeIndex
+    routeLogin
   ]);
 
-  server.auth.default('google');
+  //server.auth.default('google');
   await server.start();
   console.log('Server running at:', server.info.uri);
 }
