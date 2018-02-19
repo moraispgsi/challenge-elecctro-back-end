@@ -742,7 +742,7 @@ var routeIndex = {
   path: '/',
   config: {
     auth: {
-      strategy: 'session', //authorisation is of 'hapi-auth-cookie' type
+      strategy: 'google', //authorisation is of 'hapi-auth-cookie' type
       mode: 'try' //allows you to proceed to a path handler even if not authenticated
     },
     handler: function handler(request, h) {
