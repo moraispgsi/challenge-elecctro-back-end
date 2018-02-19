@@ -7,6 +7,10 @@ import uuidv4 from 'uuid/v4'
 import Joi from 'joi'
 import Boom from 'boom'
 import Bell from 'bell'
+import Vision from 'vision'
+import Inert from 'inert'
+import Lout from 'lout'
+
 import CookieAuth from 'hapi-auth-cookie'
 import UserCache from './user-cache'
 import TaskCache, { COMPLETE, INCOMPLETE, DATE_ADDED, DESCRIPTION, ALL } from './task-cache'
@@ -16,6 +20,24 @@ const userCache = new UserCache(client);
 const taskCache = new TaskCache(client);
 
 
+const baseHandler = async (request, h) => {
+  return 'HOME';
+};
+
+const baseConfig = {
+  auth: {
+    strategy: 'session'
+  },
+  handler: baseHandler,
+};
+
+const baseRoute = {
+  method: 'GET',
+  path: '/',
+  config: baseConfig
+};
+
+
 //  _____ _____ _____    _____ _____ _____ _____ _____
 // |   __|   __|_   _|  |_   _|  _  |   __|  |  |   __|
 // |  |  |   __| | |      | | |     |__   |    -|__   |
@@ -23,7 +45,7 @@ const taskCache = new TaskCache(client);
 //
 
 const getTasksHandler = async (request, h) => {
-  const tasks = await userCache.getTasks();
+  const tasks = await taskCache.getTasks();
   return tasks.filter((task) => {
     switch(request.query.filter){
       case ALL:
@@ -78,7 +100,7 @@ const getTasksRoute = {
 //
 
 const addTaskHandler = async (request, h) => {
-  return await userCache.addTask(request.payload.description);
+  return await taskCache.addTask(request.payload.description);
 };
 
 const addTaskValidate = {
@@ -112,7 +134,7 @@ const addTaskRoute =  {
 //
 
 const updateTaskHandler = async (request, h) => {
-  return await userCache.editTask(request.params.id, request.payload.state, request.payload.description);
+  return await taskCache.editTask(request.params.id, request.payload.state, request.payload.description);
 };
 
 const updateTaskValidate = {
@@ -151,7 +173,7 @@ const updateTaskRoute = {
 //
 
 const removeTaskHandler = (request, h) => {
-  return userCache.removeTask(request.params.id);
+  return taskCache.removeTask(request.params.id);
 };
 
 const removeTaskValidate = {
@@ -167,7 +189,7 @@ const removeTaskConfig =  {
   auth: {
     strategy: 'session'
   },
-  handler: removeTaskHandler(),
+  handler: removeTaskHandler,
   validate: removeTaskValidate
 };
 
@@ -177,25 +199,38 @@ const removeTaskRoute = {
   config: removeTaskConfig
 };
 
-const routeLogin = {
+
+//  __    _____ _____ _____ _____
+// |  |  |     |   __|     |   | |
+// |  |__|  |  |  |  |-   -| | | |
+// |_____|_____|_____|_____|_|___|
+//
+
+const loginHandler = async (request, h) => {
+
+  if (!request.auth.isAuthenticated) {
+    return 'Authentication failed with error: '  + request.auth.error.message;
+  }
+
+  const profile = request.auth.credentials;
+  const user = await userCache.addUser(profile);
+  request.cookieAuth.set({ sid: user.id });
+
+  return h.redirect('/');
+
+};
+
+const loginConfig = {
+  auth: {
+    strategy: 'google',
+  },
+  handler: loginHandler
+};
+
+const loginRoute = {
   method: ['GET', 'POST'],
   path: '/login',
-  config: {
-    auth: {
-      strategy: 'google',
-    },
-    handler: async (request, h) => {
-      if (!request.auth.isAuthenticated) {
-        return 'Authentication failed with error: '  + request.auth.error.message;
-      }
-
-      const profile = request.auth.credentials;
-      const user = await userCache.addUser(profile);
-      request.cookieAuth.set({ sid: user.id });
-
-      return h.redirect(request.query.next);
-    }
-  }
+  config: loginConfig
 };
 
 
@@ -209,8 +244,7 @@ const server = Hapi.server({ host: '0.0.0.0', port: process.env.PORT });
 
 async function startServer() {
   await client.start();
-  await server.register([Bell, CookieAuth]);
-  await userCache.addUser('root', 'root');
+  await server.register([Bell, CookieAuth, Vision, Inert, Lout]);
 
   server.auth.strategy('google', 'bell', {
     provider: 'google',
@@ -240,11 +274,12 @@ async function startServer() {
   });
 
   server.route([
+    baseRoute,
     getTasksRoute,
     addTaskRoute,
     updateTaskRoute,
     removeTaskRoute,
-    routeLogin
+    loginRoute
   ]);
 
   server.auth.default('session');
