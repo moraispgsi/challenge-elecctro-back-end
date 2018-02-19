@@ -505,6 +505,7 @@ var startServer = function () {
               location: process.env.redirectURL
             });
 
+            /*
             server.auth.strategy('session', 'cookie', {
               password: process.env.password, //used for cookie-encoding, the string could be anything
               cookie: 'sid',
@@ -512,17 +513,17 @@ var startServer = function () {
               redirectOnTry: false,
               isSecure: false
             });
-
+            */
             server.route([routeAddTodos, routeUpdateTodo, routeGetTodos, routeRemoveTodo, routeLogin, routeLogout, routeIndex]);
 
             server.auth.default('session');
-            _context11.next = 12;
+            _context11.next = 11;
             return server.start();
 
-          case 12:
+          case 11:
             console.log('Server running at:', server.info.uri);
 
-          case 13:
+          case 12:
           case 'end':
             return _context11.stop();
         }
@@ -702,7 +703,7 @@ var routeRemoveTodo = {
 
 var routeLogin = {
   method: '*', // Must handle both GET and POST
-  path: '/login', // The callback endpoint registered with the provider
+  path: '/bell/door', // The callback endpoint registered with the provider
   config: {
     auth: {
       strategy: 'google',
@@ -712,7 +713,7 @@ var routeLogin = {
 
       console.log(JSON.stringify(request.auth.credentials, null, 4));
       if (!request.auth.isAuthenticated) {
-        return 'Authentication failed';
+        return 'Authentication failed' + request.auth.error.message;
       }
 
       // Perform any account lookup or registration, setup local session,

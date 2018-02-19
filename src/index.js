@@ -10,6 +10,7 @@ import Bell from 'bell'
 import CookieAuth from 'hapi-auth-cookie'
 import passwordHash from 'password-hash'
 
+
 const ALL = 'ALL';
 const COMPLETE = 'COMPLETE';
 const INCOMPLETE = 'INCOMPLETE';
@@ -238,7 +239,7 @@ const routeRemoveTodo = {
 
 const routeLogin = {
   method: '*', // Must handle both GET and POST
-  path: '/login',          // The callback endpoint registered with the provider
+  path: '/bell/door',          // The callback endpoint registered with the provider
   config: {
     auth: {
       strategy: 'google',
@@ -249,7 +250,7 @@ const routeLogin = {
 
       console.log(JSON.stringify(request.auth.credentials, null, 4))
       if (!request.auth.isAuthenticated) {
-        return 'Authentication failed';
+        return 'Authentication failed'  + request.auth.error.message;
       }
 
 
@@ -310,6 +311,7 @@ async function startServer() {
     location: process.env.redirectURL
   });
 
+  /*
   server.auth.strategy('session', 'cookie', {
     password: process.env.password, //used for cookie-encoding, the string could be anything
     cookie: 'sid',
@@ -317,7 +319,7 @@ async function startServer() {
     redirectOnTry: false,
     isSecure: false
   });
-
+  */
   server.route([
     routeAddTodos,
     routeUpdateTodo,
