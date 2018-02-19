@@ -330,7 +330,7 @@ async function startServer() {
     //routeIndex
   ]);
 
-  server.auth.default('session');
+  server.auth.default('google');
   await server.start();
   console.log('Server running at:', server.info.uri);
 }

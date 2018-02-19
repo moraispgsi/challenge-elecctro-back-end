@@ -519,7 +519,7 @@ var startServer = function () {
             //routeIndex
             );
 
-            server.auth.default('session');
+            server.auth.default('google');
             _context11.next = 11;
             return server.start();
 
