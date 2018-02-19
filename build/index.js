@@ -502,7 +502,8 @@ var startServer = function () {
               isSecure: false,
               clientId: process.env.clientId,
               clientSecret: process.env.clientSecret,
-              location: process.env.redirectURL
+              location: process.env.redirectURL,
+              redirectTo: '/bell/door'
             });
 
             /*
