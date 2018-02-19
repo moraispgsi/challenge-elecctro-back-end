@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="899b97ff-e7d4-455e-888d-22da5c48ef9c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/task-cache.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/user-cache.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/index.js" afterPath="$PROJECT_DIR$/build/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
@@ -22,8 +24,8 @@
       <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+            <state relative-caret-position="-176">
+              <caret line="17" column="11" lean-forward="true" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -62,32 +64,71 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="304" column="4" lean-forward="false" selection-start-line="304" selection-start-column="4" selection-end-line="304" selection-end-column="4" />
+            <state relative-caret-position="1479">
+              <caret line="208" column="0" lean-forward="true" selection-start-line="208" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
               <folding>
                 <element signature="e#15#38#0" expanded="true" />
-                <element signature="n#!!block;n#createUser#0" expanded="false" />
-                <element signature="n#!!block;n#getUsers#0" expanded="false" />
-                <element signature="n#!!block;n#setUsers#0" expanded="false" />
-                <element signature="n#!!block;n#addUser#0" expanded="false" />
-                <element signature="n#!!block;n#existsUser#0" expanded="false" />
-                <element signature="n#!!block;n#createTask#0" expanded="false" />
-                <element signature="n#!!block;n#getTasks#0" expanded="false" />
-                <element signature="n#!!block;n#setTasks#0" expanded="false" />
-                <element signature="n#!!block;n#getTask#0" expanded="false" />
-                <element signature="n#!!block;n#addTask#0" expanded="false" />
-                <element signature="n#!!block;n#removeTask#0" expanded="false" />
-                <element signature="n#!!block;n#editTask#0" expanded="false" />
-                <element signature="e#3170#4329#0" expanded="false" />
-                <element signature="e#4355#4790#0" expanded="false" />
-                <element signature="e#4817#5425#0" expanded="false" />
-                <element signature="e#5452#5786#0" expanded="false" />
+                <element signature="e#782#1378#0" expanded="false" />
+                <element signature="e#1406#1659#0" expanded="false" />
+                <element signature="e#1685#1784#0" expanded="false" />
+                <element signature="e#1809#1872#0" expanded="false" />
+                <element signature="e#2148#2214#0" expanded="false" />
+                <element signature="e#2241#2444#0" expanded="false" />
+                <element signature="e#2469#2566#0" expanded="false" />
+                <element signature="e#2591#2653#0" expanded="false" />
+                <element signature="e#2980#3089#0" expanded="false" />
+                <element signature="e#3119#3473#0" expanded="false" />
+                <element signature="e#3501#3604#0" expanded="false" />
+                <element signature="e#3631#3702#0" expanded="false" />
+                <element signature="e#4023#4076#0" expanded="false" />
+                <element signature="e#4106#4254#0" expanded="false" />
+                <element signature="e#4283#4388#0" expanded="false" />
+                <element signature="e#4415#4487#0" expanded="false" />
+                <element signature="e#4509#4991#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="task-cache.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/task-cache.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="39" column="29" lean-forward="false" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+              <folding>
+                <element signature="e#167#299#0" expanded="false" />
+                <element signature="e#320#546#0" expanded="false" />
+                <element signature="e#572#682#0" expanded="false" />
+                <element signature="e#704#797#0" expanded="false" />
+                <element signature="e#828#1002#0" expanded="false" />
+                <element signature="e#1027#1289#0" expanded="false" />
+                <element signature="e#1332#1819#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user-cache.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/user-cache.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="258">
+              <caret line="40" column="19" lean-forward="false" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="19" />
+              <folding>
+                <element signature="e#241#467#0" expanded="false" />
+                <element signature="e#493#596#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>addUser</find>
+      <find>createUser</find>
+      <find>this.createUser</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -100,8 +141,11 @@
         <option value="$PROJECT_DIR$/lib/index.js" />
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/build/index.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/test.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/users.js" />
+        <option value="$PROJECT_DIR$/src/task-cache.js" />
+        <option value="$PROJECT_DIR$/src/user-cache.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
       </list>
     </option>
@@ -297,12 +341,12 @@
       <option name="presentableId" value="Default" />
       <updated>1518922021676</updated>
       <workItem from="1518922023415" duration="4577000" />
-      <workItem from="1518929063378" duration="43872000" />
+      <workItem from="1518929063378" duration="51930000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48449000" />
+    <option name="totallyTimeSpent" value="56507000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
@@ -334,7 +378,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="11" />
+      <option name="time" value="13" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -377,22 +421,23 @@
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <element signature="n#!!block;n#createUser#0" expanded="false" />
-            <element signature="n#!!block;n#getUsers#0" expanded="false" />
-            <element signature="n#!!block;n#setUsers#0" expanded="false" />
-            <element signature="n#!!block;n#addUser#0" expanded="false" />
-            <element signature="n#!!block;n#existsUser#0" expanded="false" />
-            <element signature="n#!!block;n#createTask#0" expanded="false" />
-            <element signature="n#!!block;n#getTasks#0" expanded="false" />
-            <element signature="n#!!block;n#setTasks#0" expanded="false" />
-            <element signature="n#!!block;n#getTask#0" expanded="false" />
-            <element signature="n#!!block;n#addTask#0" expanded="false" />
-            <element signature="n#!!block;n#removeTask#0" expanded="false" />
-            <element signature="n#!!block;n#editTask#0" expanded="false" />
-            <element signature="e#3170#4329#0" expanded="false" />
-            <element signature="e#4355#4790#0" expanded="false" />
-            <element signature="e#4817#5425#0" expanded="false" />
-            <element signature="e#5452#5786#0" expanded="false" />
+            <element signature="e#782#1378#0" expanded="false" />
+            <element signature="e#1406#1659#0" expanded="false" />
+            <element signature="e#1685#1784#0" expanded="false" />
+            <element signature="e#1809#1872#0" expanded="false" />
+            <element signature="e#2148#2214#0" expanded="false" />
+            <element signature="e#2241#2444#0" expanded="false" />
+            <element signature="e#2469#2566#0" expanded="false" />
+            <element signature="e#2591#2653#0" expanded="false" />
+            <element signature="e#2980#3089#0" expanded="false" />
+            <element signature="e#3119#3473#0" expanded="false" />
+            <element signature="e#3501#3604#0" expanded="false" />
+            <element signature="e#3631#3702#0" expanded="false" />
+            <element signature="e#4023#4076#0" expanded="false" />
+            <element signature="e#4106#4254#0" expanded="false" />
+            <element signature="e#4283#4388#0" expanded="false" />
+            <element signature="e#4415#4487#0" expanded="false" />
+            <element signature="e#4509#4991#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -406,10 +451,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/src/test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state relative-caret-position="-102">
+          <caret line="7" column="63" lean-forward="true" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
           <folding />
         </state>
       </provider>
@@ -422,6 +467,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-176">
+          <caret line="17" column="11" lean-forward="true" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -430,44 +491,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
+    <entry file="file://$PROJECT_DIR$/src/user-cache.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
-          <folding />
+        <state relative-caret-position="258">
+          <caret line="40" column="19" lean-forward="false" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="19" />
+          <folding>
+            <element signature="e#241#467#0" expanded="false" />
+            <element signature="e#493#596#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test.js">
+    <entry file="file://$PROJECT_DIR$/src/task-cache.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <caret line="7" column="63" lean-forward="true" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
-          <folding />
+        <state relative-caret-position="197">
+          <caret line="39" column="29" lean-forward="false" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+          <folding>
+            <element signature="e#167#299#0" expanded="false" />
+            <element signature="e#320#546#0" expanded="false" />
+            <element signature="e#572#682#0" expanded="false" />
+            <element signature="e#704#797#0" expanded="false" />
+            <element signature="e#828#1002#0" expanded="false" />
+            <element signature="e#1027#1289#0" expanded="false" />
+            <element signature="e#1332#1819#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="304" column="4" lean-forward="false" selection-start-line="304" selection-start-column="4" selection-end-line="304" selection-end-column="4" />
+        <state relative-caret-position="1479">
+          <caret line="208" column="0" lean-forward="true" selection-start-line="208" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
-            <element signature="n#!!block;n#createUser#0" expanded="false" />
-            <element signature="n#!!block;n#getUsers#0" expanded="false" />
-            <element signature="n#!!block;n#setUsers#0" expanded="false" />
-            <element signature="n#!!block;n#addUser#0" expanded="false" />
-            <element signature="n#!!block;n#existsUser#0" expanded="false" />
-            <element signature="n#!!block;n#createTask#0" expanded="false" />
-            <element signature="n#!!block;n#getTasks#0" expanded="false" />
-            <element signature="n#!!block;n#setTasks#0" expanded="false" />
-            <element signature="n#!!block;n#getTask#0" expanded="false" />
-            <element signature="n#!!block;n#addTask#0" expanded="false" />
-            <element signature="n#!!block;n#removeTask#0" expanded="false" />
-            <element signature="n#!!block;n#editTask#0" expanded="false" />
-            <element signature="e#3170#4329#0" expanded="false" />
-            <element signature="e#4355#4790#0" expanded="false" />
-            <element signature="e#4817#5425#0" expanded="false" />
-            <element signature="e#5452#5786#0" expanded="false" />
+            <element signature="e#782#1378#0" expanded="false" />
+            <element signature="e#1406#1659#0" expanded="false" />
+            <element signature="e#1685#1784#0" expanded="false" />
+            <element signature="e#1809#1872#0" expanded="false" />
+            <element signature="e#2148#2214#0" expanded="false" />
+            <element signature="e#2241#2444#0" expanded="false" />
+            <element signature="e#2469#2566#0" expanded="false" />
+            <element signature="e#2591#2653#0" expanded="false" />
+            <element signature="e#2980#3089#0" expanded="false" />
+            <element signature="e#3119#3473#0" expanded="false" />
+            <element signature="e#3501#3604#0" expanded="false" />
+            <element signature="e#3631#3702#0" expanded="false" />
+            <element signature="e#4023#4076#0" expanded="false" />
+            <element signature="e#4106#4254#0" expanded="false" />
+            <element signature="e#4283#4388#0" expanded="false" />
+            <element signature="e#4415#4487#0" expanded="false" />
+            <element signature="e#4509#4991#0" expanded="false" />
           </folding>
         </state>
       </provider>

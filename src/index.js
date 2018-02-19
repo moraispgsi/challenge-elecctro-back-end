@@ -8,273 +8,209 @@ import Joi from 'joi'
 import Boom from 'boom'
 import Bell from 'bell'
 import CookieAuth from 'hapi-auth-cookie'
-import passwordHash from 'password-hash'
-
-const ALL = 'ALL';
-const COMPLETE = 'COMPLETE';
-const INCOMPLETE = 'INCOMPLETE';
-const DESCRIPTION = 'DESCRIPTION';
-const DATE_ADDED = 'DATE_ADDED';
+import UserCache from './user-cache'
+import TaskCache, { COMPLETE, INCOMPLETE, DATE_ADDED, DESCRIPTION, ALL } from './task-cache'
 
 const client = new Client(catboxMemory);
+const userCache = new UserCache(client);
+const taskCache = new TaskCache(client);
 
-function createUser(username, password) {
-  return {
-    id: uuidv4(),
-    username,
-    password: passwordHash.generate(password)
-  }
-}
 
-async function getUsers() {
-  const key = { id: 'users', segment: 'users' };
-  let value = await client.get(key);
-  if(!value) {
-    let users = [];
-    await client.set(key, users);
-    return [];
-  }
-  return value.item;
-}
+//  _____ _____ _____    _____ _____ _____ _____ _____
+// |   __|   __|_   _|  |_   _|  _  |   __|  |  |   __|
+// |  |  |   __| | |      | | |     |__   |    -|__   |
+// |_____|_____| |_|      |_| |__|__|_____|__|__|_____|
+//
 
-async function setUsers(users) {
-  const key = { id: 'users', segment: 'users' };
-  await client.set(key, users, 100000);
-}
-
-async function addUser(username, password) {
-  let users = await getUsers();
-  let newUser = createUser(username, password);
-  users.push(newUser);
-  await setUsers(users);
-  return newUser;
-}
-
-async function existsUser(username, password) {
-  let users = await getUsers();
-  console.log('user', username);
-  console.log('password', password);
-  for(let user of users) {
-    console.log(user.password);
-    console.log(passwordHash.verify(password, user.password))
-    if (user.username === username &&
-      passwordHash.verify(password, user.password)) {
-      return true;
+const getTasksHandler = async (request, h) => {
+  const tasks = await userCache.getTasks();
+  return tasks.filter((task) => {
+    switch(request.query.filter){
+      case ALL:
+        return true;
+      case COMPLETE:
+        return task.state === COMPLETE;
+      case INCOMPLETE:
+        return task.state === INCOMPLETE;
+      default:
+        return true;
     }
-  }
-  return false;
-}
-
-
-
-function createTask (description) {
-  return {
-    id: uuidv4(),
-    state: INCOMPLETE,
-    description,
-    dateAdded: (new Date()).toISOString()
-  }
-}
-
-async function getTasks() {
-  const key = { id: 'tasks', segment: 'tasks' };
-  let value = await client.get(key);
-  if(!value) {
-    let tasks = [];
-    await client.set(key, tasks);
-    return [];
-  }
-  return value.item;
-}
-
-async function setTasks(tasks) {
-  const key = { id: 'tasks', segment: 'tasks' };
-  return await client.set(key, tasks, 100000);
-}
-
-async function getTask(id) {
-  let tasks = await getTasks();
-  return tasks.find((task) => task.id === id);
-}
-
-async function addTask(description) {
-  let tasks = await getTasks();
-  let newTask = createTask(description);
-  tasks.push(newTask);
-  await setTasks(tasks);
-  return newTask;
-}
-
-async function removeTask(id) {
-  if(!await getTask(id)) {
-    return Boom.boomify(new Error('ID not found.'), { statusCode: 404 });
-  }
-  let tasks = await getTasks();
-  tasks = tasks.filter((task) => !(task.id === id));
-  await setTasks(tasks);
-  return '';
-}
-
-async function editTask(id, state, description) {
-  let tasks = await getTasks();
-  for(let task of tasks) {
-    if(task.id === id) {
-      if(task.state === COMPLETE){
-        return Boom.boomify(new Error('Task is already complete.'), { statusCode: 400 });
-      }
-      task.state = state || task.state;
-      task.description = description || task.description;
-      await setTasks(tasks);
-
-      return task;
+  }).sort((taskA, taskB) => {
+    switch(request.query.orderBy) {
+      case DESCRIPTION:
+        return taskA.description.localeCompare(taskB.description);
+        break;
+      case DATE_ADDED:
+        return new Date(taskA.dateAdded) > new Date(taskB.dateAdded);
     }
-  }
-  return Boom.boomify(new Error('ID not found.'), { statusCode: 404 });
-}
+  })
+};
 
-const routeGetTodos = {
+const getTasksValidate = {
+  query: {
+    filter: Joi.string().valid(COMPLETE, INCOMPLETE, ALL).optional(),
+    orderBy: Joi.string().valid(DESCRIPTION, DATE_ADDED).optional()
+  },
+  failAction: (request, h, error) => {
+    return Boom.boomify(error, { statusCode: 400 });
+  }
+};
+
+const getTasksConfig = {
+  auth: {
+    strategy: 'session'
+  },
+  handler: getTasksHandler,
+  validate: getTasksValidate
+};
+
+const getTasksRoute = {
   method: 'GET',
   path: '/todos',
-  config: {
-    auth: {
-      strategy: 'google'
-    },
-    handler: (request, h) => {
-      return getTasks().then((tasks) => {
+  config: getTasksConfig
+};
 
-        return tasks.filter((task) => {
-          switch(request.query.filter){
-            case ALL:
-              return true;
-            case COMPLETE:
-              return task.state === COMPLETE;
-            case INCOMPLETE:
-              return task.state === INCOMPLETE;
-            default:
-              return true;
-          }
-        }).sort((taskA, taskB) => {
-          switch(request.query.orderBy) {
-            case DESCRIPTION:
-              return taskA.description.localeCompare(taskB.description);
-              break;
-            case DATE_ADDED:
-              return new Date(taskA.dateAdded) > new Date(taskB.dateAdded);
-          }
-        })
 
-      });
-    },
-    validate: {
-      query: {
-        filter: Joi.string().valid(COMPLETE, INCOMPLETE, ALL).optional(),
-        orderBy: Joi.string().valid(DESCRIPTION, DATE_ADDED).optional()
-      },
-      failAction: (request, h, error) => {
-        return Boom.boomify(error, { statusCode: 400 });
-      }
-    }
+//  _____ ____  ____     _____ _____ _____ _____ _____
+// |  _  |    \|    \   |_   _|  _  |   __|  |  |   __|
+// |     |  |  |  |  |    | | |     |__   |    -|__   |
+// |__|__|____/|____/     |_| |__|__|_____|__|__|_____|
+//
+
+const addTaskHandler = async (request, h) => {
+  return await userCache.addTask(request.payload.description);
+};
+
+const addTaskValidate = {
+  payload: Joi.object().required().keys({
+    description: Joi.string().min(1).max(60).required()
+  }),
+  failAction: (request, h, error) => {
+    return Boom.boomify(error, { statusCode: 400 });
   }
 };
 
-const routeAddTodos =  {
+const addTaskConfig = {
+  auth: {
+    strategy: 'session'
+  },
+  handler: addTaskHandler,
+  validate: addTaskValidate
+};
+
+const addTaskRoute =  {
   method: 'PUT',
   path: '/todos',
-  config:{
-    handler: (request, h) => {
-      return addTask(request.payload.description).then((task) => {
-        return task;
-      });
-    },
-    validate: {
-      payload: Joi.object().required().keys({
-        description: Joi.string().min(1).max(60).required()
-      }),
-      failAction: (request, h, error) => {
-        return Boom.boomify(error, { statusCode: 400 });
-      }
-    }
+  config: addTaskConfig
+};
+
+
+//  _____ _____ ____  _____ _____ _____    _____ _____ _____ _____
+// |  |  |  _  |    \|  _  |_   _|   __|  |_   _|  _  |   __|  |  |
+// |  |  |   __|  |  |     | | | |   __|    | | |     |__   |    -|
+// |_____|__|  |____/|__|__| |_| |_____|    |_| |__|__|_____|__|__|
+//
+
+const updateTaskHandler = async (request, h) => {
+  return await userCache.editTask(request.params.id, request.payload.state, request.payload.description);
+};
+
+const updateTaskValidate = {
+  params: {
+    id: Joi.string().required()
+  },
+  payload: Joi.object().keys({
+    state: Joi.string().valid(COMPLETE, INCOMPLETE),
+    description: Joi.string()
+  }).or('state', 'description'),
+  failAction: (request, h, error) => {
+    //TODO - 400 status for the payload and 404 for params
+    return Boom.boomify(error, { statusCode: 404 });
   }
 };
 
-const routeUpdateTodo = {
+const updateTaskConfig = {
+  auth: {
+    strategy: 'session'
+  },
+  handler: updateTaskHandler,
+  validate: updateTaskValidate
+};
+
+const updateTaskRoute = {
   method: 'PATCH',
   path: '/todo/{id}',
-  config:{
-    handler: (request, h) => {
-      return editTask(request.params.id, request.payload.state, request.payload.description);
-    },
-    validate: {
-      params: {
-        id: Joi.string().required()
-      },
-      payload: Joi.object().keys({
-        state: Joi.string().valid(COMPLETE, INCOMPLETE),
-        description: Joi.string()
-      }).or('state', 'description'),
-      failAction: (request, h, error) => {
-        //TODO - 400 status for the payload and 404 for params
-        return Boom.boomify(error, { statusCode: 404 });
-      }
-    }
+  config: updateTaskConfig
+};
+
+
+//  _____ _____ _____ _____ _____ _____    _____ _____ _____ _____
+// | __  |   __|     |     |  |  |   __|  |_   _|  _  |   __|  |  |
+// |    -|   __| | | |  |  |  |  |   __|    | | |     |__   |    -|
+// |__|__|_____|_|_|_|_____|\___/|_____|    |_| |__|__|_____|__|__|
+//
+
+const removeTaskHandler = (request, h) => {
+  return userCache.removeTask(request.params.id);
+};
+
+const removeTaskValidate = {
+  params: {
+    id: Joi.string().required()
+  },
+  failAction: (request, h, error) => {
+    return Boom.boomify(error, { statusCode: 404 });
   }
 };
 
-const routeRemoveTodo = {
+const removeTaskConfig =  {
+  auth: {
+    strategy: 'session'
+  },
+  handler: removeTaskHandler(),
+  validate: removeTaskValidate
+};
+
+const removeTaskRoute = {
   method: 'DELETE',
   path: '/todo/{id}',
-  config: {
-    handler: (request, h) => {
-      return removeTask(request.params.id);
-    },
-    validate: {
-      params: {
-        id: Joi.string().required()
-      },
-      failAction: (request, h, error) => {
-        return Boom.boomify(error, { statusCode: 404 });
-      }
-    }
-  }
+  config: removeTaskConfig
 };
 
-
-
-
-
 const routeLogin = {
-  method: '*', // Must handle both GET and POST
-  path: '/bell/door',          // The callback endpoint registered with the provider
+  method: ['GET', 'POST'],
+  path: '/login',
   config: {
     auth: {
       strategy: 'google',
-      mode: 'try'
     },
-    handler: function (request, h) {
-
-
-      console.log(JSON.stringify(request.auth.credentials, null, 4))
+    handler: async (request, h) => {
       if (!request.auth.isAuthenticated) {
-        return 'Authentication failed'  + request.auth.error.message;
+        return 'Authentication failed with error: '  + request.auth.error.message;
       }
 
+      const profile = request.auth.credentials;
+      const user = await userCache.addUser(profile);
+      request.cookieAuth.set({ sid: user.id });
 
-      // Perform any account lookup or registration, setup local session,
-      // and redirect to the application. The third-party credentials are
-      // stored in request.auth.credentials. Any query parameters from
-      // the initial request are passed back via request.auth.credentials.query.
-      return 'Teste';
+      return h.redirect(request.query.next);
     }
   }
 };
+
+
+//  _____ _____ _____ _____ _____ _____
+// |   __|   __| __  |  |  |   __| __  |
+// |__   |   __|    -|  |  |   __|    -|
+// |_____|_____|__|__|\___/|_____|__|__|
+//
 
 const server = Hapi.server({ host: '0.0.0.0', port: process.env.PORT });
 
 async function startServer() {
   await client.start();
   await server.register([Bell, CookieAuth]);
-
-  await addUser('root', 'root');
+  await userCache.addUser('root', 'root');
 
   server.auth.strategy('google', 'bell', {
     provider: 'google',
@@ -285,24 +221,33 @@ async function startServer() {
     location: process.env.redirectURL,
   });
 
-  /*
   server.auth.strategy('session', 'cookie', {
     password: process.env.password, //used for cookie-encoding, the string could be anything
     cookie: 'sid',
     redirectTo: '/login',
     redirectOnTry: false,
-    isSecure: false
+    isSecure: false,
+    validateFunc: async (request, session, callback) => {
+      const user = await userCache.hasUser(session.sid);
+      const out = {
+        valid: !!user
+      };
+      if (out.valid) {
+        out.credentials = user.profile;
+      }
+      return out;
+    }
   });
-  */
+
   server.route([
-    routeAddTodos,
-    routeUpdateTodo,
-    routeGetTodos,
-    routeRemoveTodo,
+    getTasksRoute,
+    addTaskRoute,
+    updateTaskRoute,
+    removeTaskRoute,
     routeLogin
   ]);
 
-  //server.auth.default('google');
+  server.auth.default('session');
   await server.start();
   console.log('Server running at:', server.info.uri);
 }
