@@ -1,5 +1,6 @@
 
 import uuidv4 from 'uuid/v4'
+import Boom from 'boom'
 
 const TTL = 1000000;
 export const ALL = 'ALL';
@@ -29,7 +30,9 @@ export default class User {
 
   //Adds a new task without saving(locally)
   addTask(description) {
-    this.tasks.push(User.createTask(description));
+    const task = User.createTask(description);
+    this.tasks.push(task);
+    return task;
   }
 
   //Return task by id
@@ -84,7 +87,7 @@ export default class User {
     let value = await client.get(key);
     if(!value) {
       let users = [];
-      await client.set(key, users);
+      await client.set(key, users, TTL);
       return [];
     }
     return value.item;
@@ -111,7 +114,7 @@ export default class User {
       id: user.id,
       profile: user.profile,
       tasks: user.tasks,
-    });
+    }, TTL);
     const keyUsers = { id: 'users', segment: 'users' };
     let value = await client.get(keyUsers);
     let users;
@@ -121,7 +124,7 @@ export default class User {
       users = value.item;
       users.push(user.id);
     }
-    await client.set(keyUsers, users);
+    await client.set(keyUsers, users, TTL);
   }
 
   //Adds an user in the cache
@@ -132,7 +135,7 @@ export default class User {
       tasks: tasks,
     };
     const keyUser = { id: user.id, segment: 'users' };
-    client.set(keyUser, user);
+    await client.set(keyUser, user, TTL);
 
     const keyUsers = { id: 'users', segment: 'users' };
     let value = await client.get(keyUsers);
@@ -143,7 +146,7 @@ export default class User {
       users = value.item;
       users.push(user.id);
     }
-    await client.set(keyUsers, users);
+    await client.set(keyUsers, users, TTL);
     return new User(client, user);
   }
 
@@ -156,8 +159,30 @@ export default class User {
     let value = await client.get(keyUsers);
     if(!value) {
       let users = [];
-      await client.set(keyUsers, users);
+      await client.set(keyUsers, users, TTL);
     }
+  }
+
+  static async setSessionKey(client, user) {
+    const sid = uuidv4();
+    const keySession = { id: sid, segment: 'session' };
+    await client.set(keySession, user.id, TTL);
+    return sid
+  }
+
+  static async removeSessionKey(client, sid) {
+    const keySession = { id: sid, segment: 'session' };
+    await client.drop(keySession);
+  }
+
+  static async getUserWithSessionID(client, sid) {
+    const keySession = { id: sid, segment: 'session' };
+    let value = await client.get(keySession);
+    if(value) {
+      const id = value.item;
+      return await User.getUser(client, id);
+    }
+    throw Error('User does not exist.');
   }
 
 }
