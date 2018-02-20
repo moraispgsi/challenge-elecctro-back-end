@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import Task from '../components/Task'
 import { getVisibleTasks } from '../selectors/TasksSelector'
 
+//@flow
+
 class TaskList extends Component {
   render() {
     return (
@@ -18,7 +20,7 @@ class TaskList extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: object) => ({
   tasks: getVisibleTasks(state)
 });
 

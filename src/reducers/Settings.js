@@ -2,13 +2,16 @@ import { Map } from 'immutable'
 import * as types from '../constants/SettingsActionTypes'
 import * as sortType from '../constants/SortTypes'
 
+
+//@flow
+
 const initialState = Map({
   showingSettings: false,
   showingMarked: true,
   sorting: sortType.NONE
 });
 
-export default (state = initialState, action) => {
+export default (state = initialState, action: object) => {
 
   switch (action.type) {
     case types.SHOW_SETTINGS:

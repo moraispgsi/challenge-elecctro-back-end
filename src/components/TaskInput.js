@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { addTask } from '../actions/TaskActions'
 import TaskList from '../containers/TaskList'
 
+//@flow
+
 class TaskInput extends Component {
 
   constructor() {
@@ -42,7 +44,7 @@ class TaskInput extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: object) => ({
   tasks: state.tasks
 });
 

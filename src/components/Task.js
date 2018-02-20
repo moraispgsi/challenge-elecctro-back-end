@@ -5,6 +5,7 @@ import { removeTask, editTask, markTask, unmarkTask } from '../actions/TaskActio
 import { hideSettings } from '../actions/SettingsActions'
 import cross from '../img/cross.svg'
 
+//@flow
 
 class Task extends Component {
 
@@ -89,8 +90,7 @@ Task.propTypes = {
   marked: PropTypes.bool
 };
 
-//Mapping the dispatcher to prop functions(actions)
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch) => ({
   removeTask: (id) => dispatch (removeTask(id)),
   editTask: (id, text) => dispatch (editTask(id, text)),
   markTask: (id) => dispatch (markTask(id)),

@@ -6,6 +6,8 @@ import * as sortingTypes from '../constants/SortTypes'
 import ascendingIcon from '../img/ascending.svg'
 import descendingIcon from '../img/descending.svg'
 
+//@flow
+
 class Settings extends Component {
 
   _handleSortClick() {
@@ -69,14 +71,13 @@ Settings.propTypes = {
   showingMarked: PropTypes.bool
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: object) => ({
   showingSettings: state.settings.get('showingSettings'),
   sorting: state.settings.get('sorting'),
   showingMarked: state.settings.get('showingMarked')
 });
 
-//Mapping the dispatcher to prop functions(actions)
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch) => ({
   hideSettings: () => dispatch(hideSettings()),
   showMarked: () => dispatch (showMarked()),
   notShowMarked: () => dispatch (notShowMarked()),

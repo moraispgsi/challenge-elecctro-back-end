@@ -63,8 +63,6 @@ const baseRoute = {
   }
 };
 
-
-
 const appRoute = {
   method: 'GET',
   path: '/',

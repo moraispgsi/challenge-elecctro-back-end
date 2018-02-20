@@ -2,6 +2,8 @@ import * as types from '../constants/TaskActionTypes';
 import uuidv1 from 'uuid/v1';
 import { List, Map } from 'immutable';
 
+//@flow
+
 const initialState = List([
     /*Map({
       id: uuidv1(),
@@ -11,7 +13,7 @@ const initialState = List([
   ]
 );
 
-export default (state = initialState, action) => {
+export default (state: object = initialState, action: object) => {
 
   switch (action.type) {
 

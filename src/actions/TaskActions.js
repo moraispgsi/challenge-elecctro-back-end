@@ -2,8 +2,10 @@ import * as types from '../constants/TaskActionTypes';
 import * as sortTypes from '../constants/SortTypes'
 import fetch from 'cross-fetch'
 
-export const taskAdded = (id, text, marked) => ({ type: types.TASK_ADDED, id, text, marked });
-export const addTask = (text) => {
+// @flow
+
+export const taskAdded = (id: string, text: string, marked: boolean) => ({ type: types.TASK_ADDED, id, text, marked });
+export const addTask = (text: string) => {
   return dispatch => {
     fetch('/todos', {
       method: "PUT",
@@ -28,8 +30,8 @@ export const addTask = (text) => {
     });
   }
 };
-export const taskRemoved = (id) => ({ type: types.TASK_REMOVED, id });
-export const removeTask = (id) => {
+export const taskRemoved = (id: boolean) => ({ type: types.TASK_REMOVED, id });
+export const removeTask = (id: boolean) => {
   return dispatch => {
     fetch(`/todo/${id}`, {
       method: "DELETE",
@@ -47,8 +49,8 @@ export const removeTask = (id) => {
     });
   }
 };
-export const taskEdited = (id, text) => ({ type: types.EDIT_TASK, id, text });
-export const editTask = (id, text) => {
+export const taskEdited = (id: boolean, text: string) => ({ type: types.EDIT_TASK, id, text });
+export const editTask = (id: boolean, text: string) => {
   return dispatch => {
     fetch(`/todo/${id}`, {
       method: "PATCH",
@@ -73,8 +75,8 @@ export const editTask = (id, text) => {
   }
 };
 
-export const taskMarked = (id) => ({ type: types.TASK_MARKED, id });
-export const markTask = (id) => {
+export const taskMarked = (id: string) => ({ type: types.TASK_MARKED, id });
+export const markTask = (id: string) => {
   return dispatch => {
     fetch(`/todo/${id}`, {
       method: "PATCH",

@@ -1,3 +1,4 @@
+//@flow
 import { createSelector } from 'reselect'
 import * as sortTypes from '../constants/SortTypes'
 
@@ -7,7 +8,7 @@ const getTasks = (state) => state.tasks;
 
 export const getVisibleTasks = createSelector(
   [ getVisibilityFilter, getOrderFilter, getTasks ],
-  (showingMarked, sorting, tasks) => {
+  (showingMarked: bool, sorting: string, tasks) => {
     return tasks.filter((task) => showingMarked || !task.get('marked'))
      .sort((previous, next) => {
        if(sorting === sortTypes.NONE)
