@@ -1,6 +1,6 @@
 # challenge-elecctro-back-end-front-end
 
-Back-end challenge solution for Elecctro company
+Back-end with front-end adaptation challenge solution for Elecctro company
 
 ## Description
 
