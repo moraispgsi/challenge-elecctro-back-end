@@ -2,7 +2,7 @@
 
 import Hapi from 'hapi'
 import { Client } from 'catbox'
-import catboxMemory from 'catbox-memory'
+import catboxRedis from 'catbox-redis'
 import uuidv4 from 'uuid/v4'
 import Joi from 'joi'
 import Boom from 'boom'
@@ -20,18 +20,31 @@ if(!process.env.CLIENT_ID) {
 if(!process.env.CLIENT_SECRET) {
   throw new Error('CLIENT_SECRET environmental variable is required');
 }
+if(!process.env.REDIS_HOST) {
+  throw new Error('REDIS_URL environmental variable is required');
+}
 
 const PASSWORD = process.env.PASSWORD || 'Password with at least 32 characters';
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const PORT = process.env.PORT || 8000;
 const REDIRECT_URL = process.env.REDIRECT_URL || 'http://localhost:' + PORT;
+const REDIS_HOST = process.env.REDIS_HOST;
+const REDIS_PORT = process.env.REDIS_PORT;
+const REDIS_PASSWORD = process.env.REDIS_PASSWORD;
 
 const UUID_VERSIONS = [
   'uuidv4'
 ];
 
-const client = new Client(catboxMemory);
+const options = {
+  partition: 'base',
+  host: REDIS_HOST,
+  port: REDIS_PORT,
+  password: REDIS_PASSWORD
+};
+
+const client = new Client(catboxRedis, options);
 
 const baseRoute = {
   method: 'GET',
