@@ -309,7 +309,7 @@ const loginRoute = {
 const logoutHandler = async (request, h) => {
   await User.removeSessionKey(client, h.request.state['sid'].sid)
   request.cookieAuth.clear();
-  return h.redirect(`https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=${REDIRECT_URL}`);
+  return h.redirect(`https://www.google.com/accounts/Logout?continue=${REDIRECT_URL}`);
 };
 
 const logoutConfig = {

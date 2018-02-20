@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="899b97ff-e7d4-455e-888d-22da5c48ef9c" name="Default" comment="Fully working back-end and front-end">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/static/js/main.54cb555b.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/static/js/main.54cb555b.js.map" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.babelrc" afterPath="$PROJECT_DIR$/.babelrc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.flowconfig" afterPath="$PROJECT_DIR$/.flowconfig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/asset-manifest.json" afterPath="$PROJECT_DIR$/build/asset-manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/index.html" afterPath="$PROJECT_DIR$/build/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/service-worker.js" afterPath="$PROJECT_DIR$/build/service-worker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/index.js" afterPath="$PROJECT_DIR$/server/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/TaskActions.js" afterPath="$PROJECT_DIR$/src/actions/TaskActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Settings.js" afterPath="$PROJECT_DIR$/src/components/Settings.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Task.js" afterPath="$PROJECT_DIR$/src/components/Task.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/TaskInput.js" afterPath="$PROJECT_DIR$/src/components/TaskInput.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/TaskList.js" afterPath="$PROJECT_DIR$/src/containers/TaskList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/Settings.js" afterPath="$PROJECT_DIR$/src/reducers/Settings.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/Tasks.js" afterPath="$PROJECT_DIR$/src/reducers/Tasks.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/selectors/TasksSelector.js" afterPath="$PROJECT_DIR$/src/selectors/TasksSelector.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -45,6 +27,18 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="311" column="66" lean-forward="true" selection-start-line="311" selection-start-column="66" selection-end-line="311" selection-end-column="66" />
+              <folding>
+                <element signature="e#15#38#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Settings.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Settings.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -55,7 +49,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/user.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="356">
+              <caret line="130" column="48" lean-forward="false" selection-start-line="130" selection-start-column="48" selection-end-line="130" selection-end-column="48" />
+              <folding>
+                <element signature="e#1#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
@@ -92,7 +98,7 @@
       <file leaf-file-name="Task.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Task.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="357">
               <caret line="92" column="36" lean-forward="false" selection-start-line="92" selection-start-column="36" selection-end-line="92" selection-end-column="36" />
               <folding />
             </state>
@@ -116,26 +122,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
               <caret line="2" column="1" lean-forward="false" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Settings.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/reducers/Settings.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-86">
-              <caret line="13" column="34" lean-forward="false" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Tasks.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/reducers/Tasks.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -202,7 +188,6 @@
         <option value="$PROJECT_DIR$/src/css/App.css" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/server/user.js" />
-        <option value="$PROJECT_DIR$/server/index.js" />
         <option value="$PROJECT_DIR$/src/selectors/TasksSelector.js" />
         <option value="$PROJECT_DIR$/src/components/TaskInput.js" />
         <option value="$PROJECT_DIR$/src/containers/TaskList.js" />
@@ -215,6 +200,7 @@
         <option value="$PROJECT_DIR$/src/components/Task.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/server/index.js" />
       </list>
     </option>
   </component>
@@ -278,43 +264,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="challenge-elecctro-back-end" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="challenge-elecctro-back-end" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="challenge-elecctro-back-end" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="challenge-elecctro-back-end" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="actions" />
+              <option name="myItemId" value="server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -437,12 +387,12 @@
       <updated>1518922021676</updated>
       <workItem from="1518922023415" duration="4577000" />
       <workItem from="1518929063378" duration="102815000" />
-      <workItem from="1519140353777" duration="6810000" />
+      <workItem from="1519140353777" duration="7529000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114202000" />
+    <option name="totallyTimeSpent" value="114921000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -507,92 +457,7 @@
         <state relative-caret-position="442">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding>
-            <marker date="1519146010653" expanded="true" signature="22:411" ph="..." />
-            <marker date="1519146010653" expanded="true" signature="440:510" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="542:616" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="645:715" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="1164:1178" ph="[...]" />
-            <marker date="1519146010653" expanded="true" signature="1197:1288" ph="{&quot;partition&quot;: 'base'...}" />
-            <marker date="1519146010653" expanded="true" signature="1359:1587" ph="{&quot;method&quot;: 'GET'...}" />
-            <marker date="1519146010653" expanded="true" signature="1416:1585" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="1428:1480" ph="{&quot;mode&quot;: 'try'...}" />
-            <marker date="1519146010653" expanded="true" signature="1495:1581" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="1514:1575" ph="{&quot;path&quot;: 'build/static'...}" />
-            <marker date="1519146010653" expanded="true" signature="1607:1785" ph="{&quot;method&quot;: 'GET'...}" />
-            <marker date="1519146010653" expanded="true" signature="1649:1783" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="1661:1694" ph="{&quot;strategy&quot;: 'session'...}" />
-            <marker date="1519146010653" expanded="true" signature="1731:1779" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="1788:2013" ph="//..." />
-            <marker date="1519146010653" expanded="true" signature="2061:2789" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="2101:2164" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="2271:2515" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="2305:2511" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="2322:2343" ph="..." />
-            <marker date="1519146010653" expanded="true" signature="2364:2404" ph="..." />
-            <marker date="1519146010653" expanded="true" signature="2427:2469" ph="..." />
-            <marker date="1519146010653" expanded="true" signature="2484:2505" ph="..." />
-            <marker date="1519146010653" expanded="true" signature="2540:2786" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="2576:2782" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="2601:2683" ph="..." />
-            <marker date="1519146010653" expanded="true" signature="2706:2776" ph="..." />
-            <marker date="1519146010653" expanded="true" signature="2817:3070" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="2828:2971" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="3010:3068" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="3096:3195" ph="{&quot;handler&quot;: getTasksHandler...}" />
-            <marker date="1519146010653" expanded="true" signature="3106:3135" ph="{&quot;strategy&quot;: 'session'...}" />
-            <marker date="1519146010653" expanded="true" signature="3220:3283" ph="{&quot;method&quot;: 'GET'...}" />
-            <marker date="1519146010653" expanded="true" signature="3287:3512" ph="//..." />
-            <marker date="1519146010653" expanded="true" signature="3559:3802" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="3598:3661" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="3829:4032" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="3871:3932" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="3972:4030" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="4057:4154" ph="{&quot;handler&quot;: addTaskHandler...}" />
-            <marker date="1519146010653" expanded="true" signature="4067:4096" ph="{&quot;strategy&quot;: 'session'...}" />
-            <marker date="1519146010653" expanded="true" signature="4179:4241" ph="{&quot;method&quot;: 'PUT'...}" />
-            <marker date="1519146010653" expanded="true" signature="4245:4518" ph="//..." />
-            <marker date="1519146010653" expanded="true" signature="4568:4854" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="4607:4670" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="4884:5212" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="4896:4966" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="4997:5085" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="5152:5210" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="5240:5343" ph="{&quot;handler&quot;: updateTaskHandler...}" />
-            <marker date="1519146010653" expanded="true" signature="5250:5279" ph="{&quot;strategy&quot;: 'session'...}" />
-            <marker date="1519146010653" expanded="true" signature="5370:5441" ph="{&quot;method&quot;: 'PATCH'...}" />
-            <marker date="1519146010653" expanded="true" signature="5445:5718" ph="//..." />
-            <marker date="1519146010653" expanded="true" signature="5768:6010" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="5807:5870" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="6040:6222" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="6052:6123" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="6162:6220" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="6251:6354" ph="{&quot;handler&quot;: removeTaskHandler...}" />
-            <marker date="1519146010653" expanded="true" signature="6261:6290" ph="{&quot;strategy&quot;: 'session'...}" />
-            <marker date="1519146010653" expanded="true" signature="6381:6453" ph="{&quot;method&quot;: 'DELETE'...}" />
-            <marker date="1519146010653" expanded="true" signature="6457:6598" ph="//..." />
-            <marker date="1519146010653" expanded="true" signature="6643:7121" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="6683:6746" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="6879:6935" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="6941:6998" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="7144:7210" ph="{&quot;handler&quot;: loginHandler...}" />
-            <marker date="1519146010653" expanded="true" signature="7154:7183" ph="{&quot;strategy&quot;: 'google'...}" />
-            <marker date="1519146010653" expanded="true" signature="7232:7302" ph="{&quot;path&quot;: '/login'...}" />
-            <marker date="1519146010653" expanded="true" signature="7306:7467" ph="//..." />
-            <marker date="1519146010653" expanded="true" signature="7513:7749" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="7773:7816" ph="{&quot;handler&quot;: logoutHandler...}" />
-            <marker date="1519146010653" expanded="true" signature="7839:7901" ph="{&quot;method&quot;: 'GET'...}" />
-            <marker date="1519146010653" expanded="true" signature="7905:8070" ph="//..." />
-            <marker date="1519146010653" expanded="true" signature="8187:9404" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="8321:8481" ph="{&quot;provider&quot;: 'google'...}" />
-            <marker date="1519146010653" expanded="true" signature="8529:9122" ph="{&quot;password&quot;: PASSWORD...}" />
-            <marker date="1519146010653" expanded="true" signature="8750:9118" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="8776:8835" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="8793:8827" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="8846:9040" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="8938:9031" ph="{&quot;credentials&quot;: user...}" />
-            <marker date="1519146010653" expanded="true" signature="9052:9111" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="9069:9103" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="9141:9287" ph="[...]" />
+            <element signature="e#15#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -744,146 +609,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5339">
-          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding>
-            <marker date="1519146010653" expanded="true" signature="22:411" ph="..." />
-            <marker date="1519146010653" expanded="true" signature="440:510" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="542:616" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="645:715" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="1164:1178" ph="[...]" />
-            <marker date="1519146010653" expanded="true" signature="1197:1288" ph="{&quot;partition&quot;: 'base'...}" />
-            <marker date="1519146010653" expanded="true" signature="1359:1587" ph="{&quot;method&quot;: 'GET'...}" />
-            <marker date="1519146010653" expanded="true" signature="1416:1585" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="1428:1480" ph="{&quot;mode&quot;: 'try'...}" />
-            <marker date="1519146010653" expanded="true" signature="1495:1581" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="1514:1575" ph="{&quot;path&quot;: 'build/static'...}" />
-            <marker date="1519146010653" expanded="true" signature="1607:1785" ph="{&quot;method&quot;: 'GET'...}" />
-            <marker date="1519146010653" expanded="true" signature="1649:1783" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="1661:1694" ph="{&quot;strategy&quot;: 'session'...}" />
-            <marker date="1519146010653" expanded="true" signature="1731:1779" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="1788:2013" ph="//..." />
-            <marker date="1519146010653" expanded="true" signature="2061:2789" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="2101:2164" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="2271:2515" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="2305:2511" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="2322:2343" ph="..." />
-            <marker date="1519146010653" expanded="true" signature="2364:2404" ph="..." />
-            <marker date="1519146010653" expanded="true" signature="2427:2469" ph="..." />
-            <marker date="1519146010653" expanded="true" signature="2484:2505" ph="..." />
-            <marker date="1519146010653" expanded="true" signature="2540:2786" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="2576:2782" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="2601:2683" ph="..." />
-            <marker date="1519146010653" expanded="true" signature="2706:2776" ph="..." />
-            <marker date="1519146010653" expanded="true" signature="2817:3070" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="2828:2971" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="3010:3068" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="3096:3195" ph="{&quot;handler&quot;: getTasksHandler...}" />
-            <marker date="1519146010653" expanded="true" signature="3106:3135" ph="{&quot;strategy&quot;: 'session'...}" />
-            <marker date="1519146010653" expanded="true" signature="3220:3283" ph="{&quot;method&quot;: 'GET'...}" />
-            <marker date="1519146010653" expanded="true" signature="3287:3512" ph="//..." />
-            <marker date="1519146010653" expanded="true" signature="3559:3802" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="3598:3661" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="3829:4032" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="3871:3932" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="3972:4030" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="4057:4154" ph="{&quot;handler&quot;: addTaskHandler...}" />
-            <marker date="1519146010653" expanded="true" signature="4067:4096" ph="{&quot;strategy&quot;: 'session'...}" />
-            <marker date="1519146010653" expanded="true" signature="4179:4241" ph="{&quot;method&quot;: 'PUT'...}" />
-            <marker date="1519146010653" expanded="true" signature="4245:4518" ph="//..." />
-            <marker date="1519146010653" expanded="true" signature="4568:4854" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="4607:4670" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="4884:5212" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="4896:4966" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="4997:5085" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="5152:5210" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="5240:5343" ph="{&quot;handler&quot;: updateTaskHandler...}" />
-            <marker date="1519146010653" expanded="true" signature="5250:5279" ph="{&quot;strategy&quot;: 'session'...}" />
-            <marker date="1519146010653" expanded="true" signature="5370:5441" ph="{&quot;method&quot;: 'PATCH'...}" />
-            <marker date="1519146010653" expanded="true" signature="5445:5718" ph="//..." />
-            <marker date="1519146010653" expanded="true" signature="5768:6010" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="5807:5870" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="6040:6222" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="6052:6123" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="6162:6220" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="6251:6354" ph="{&quot;handler&quot;: removeTaskHandler...}" />
-            <marker date="1519146010653" expanded="true" signature="6261:6290" ph="{&quot;strategy&quot;: 'session'...}" />
-            <marker date="1519146010653" expanded="true" signature="6381:6453" ph="{&quot;method&quot;: 'DELETE'...}" />
-            <marker date="1519146010653" expanded="true" signature="6457:6598" ph="//..." />
-            <marker date="1519146010653" expanded="true" signature="6643:7121" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="6683:6746" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="6879:6935" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="6941:6998" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="7144:7210" ph="{&quot;handler&quot;: loginHandler...}" />
-            <marker date="1519146010653" expanded="true" signature="7154:7183" ph="{&quot;strategy&quot;: 'google'...}" />
-            <marker date="1519146010653" expanded="true" signature="7232:7302" ph="{&quot;path&quot;: '/login'...}" />
-            <marker date="1519146010653" expanded="true" signature="7306:7467" ph="//..." />
-            <marker date="1519146010653" expanded="true" signature="7513:7749" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="7773:7816" ph="{&quot;handler&quot;: logoutHandler...}" />
-            <marker date="1519146010653" expanded="true" signature="7839:7901" ph="{&quot;method&quot;: 'GET'...}" />
-            <marker date="1519146010653" expanded="true" signature="7905:8070" ph="//..." />
-            <marker date="1519146010653" expanded="true" signature="8187:9404" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="8321:8481" ph="{&quot;provider&quot;: 'google'...}" />
-            <marker date="1519146010653" expanded="true" signature="8529:9122" ph="{&quot;password&quot;: PASSWORD...}" />
-            <marker date="1519146010653" expanded="true" signature="8750:9118" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="8776:8835" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="8793:8827" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="8846:9040" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="8938:9031" ph="{&quot;credentials&quot;: user...}" />
-            <marker date="1519146010653" expanded="true" signature="9052:9111" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="9069:9103" ph="{...}" />
-            <marker date="1519146010653" expanded="true" signature="9141:9287" ph="[...]" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="130" column="48" lean-forward="false" selection-start-line="130" selection-start-column="48" selection-end-line="130" selection-end-column="48" />
-          <folding>
-            <marker date="1519115856470" expanded="true" signature="8:53" ph="..." />
-            <marker date="1519115856470" expanded="true" signature="287:4820" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="318:434" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="496:628" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="509:624" ph="{&quot;state&quot;: INCOMPLETE...}" />
-            <marker date="1519115856470" expanded="true" signature="697:793" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="831:1014" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="905:993" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="1064:1092" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="1170:1591" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="1204:1508" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="1231:1502" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="1268:1371" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="1659:1869" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="1712:1800" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="1910:1958" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="1995:2059" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="2152:2373" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="2259:2346" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="2448:2734" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="2558:2613" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="2642:2728" ph="{&quot;id&quot;: id...}" />
-            <marker date="1519115856470" expanded="true" signature="2803:3248" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="2884:2964" ph="{&quot;id&quot;: user.id...}" />
-            <marker date="1519115856470" expanded="true" signature="3102:3134" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="3140:3200" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="3327:3830" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="3346:3419" ph="{&quot;id&quot;: profile.id...}" />
-            <marker date="1519115856470" expanded="true" signature="3649:3681" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="3687:3747" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="3905:4184" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="4105:4180" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="4229:4379" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="4426:4522" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="4573:4817" ph="{...}" />
-            <marker date="1519115856470" expanded="true" signature="4691:4772" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/actions/SettingsActions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1004,22 +729,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Settings.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="79" column="36" lean-forward="false" selection-start-line="79" selection-start-column="36" selection-end-line="79" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Task.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="92" column="36" lean-forward="false" selection-start-line="92" selection-start-column="36" selection-end-line="92" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1033,6 +742,42 @@
         <state relative-caret-position="17">
           <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Settings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="79" column="36" lean-forward="false" selection-start-line="79" selection-start-column="36" selection-end-line="79" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Task.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="92" column="36" lean-forward="false" selection-start-line="92" selection-start-column="36" selection-end-line="92" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="130" column="48" lean-forward="false" selection-start-line="130" selection-start-column="48" selection-end-line="130" selection-end-column="48" />
+          <folding>
+            <element signature="e#1#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="311" column="66" lean-forward="true" selection-start-line="311" selection-start-column="66" selection-end-line="311" selection-end-column="66" />
+          <folding>
+            <element signature="e#15#38#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
