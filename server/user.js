@@ -87,7 +87,7 @@ export default class User {
     let value = await client.get(key);
     if(!value) {
       let users = [];
-      await client.set(key, users);
+      await client.set(key, users, TTL);
       return [];
     }
     return value.item;
@@ -114,7 +114,7 @@ export default class User {
       id: user.id,
       profile: user.profile,
       tasks: user.tasks,
-    });
+    }, TTL);
     const keyUsers = { id: 'users', segment: 'users' };
     let value = await client.get(keyUsers);
     let users;
@@ -124,7 +124,7 @@ export default class User {
       users = value.item;
       users.push(user.id);
     }
-    await client.set(keyUsers, users);
+    await client.set(keyUsers, users, TTL);
   }
 
   //Adds an user in the cache
@@ -135,7 +135,7 @@ export default class User {
       tasks: tasks,
     };
     const keyUser = { id: user.id, segment: 'users' };
-    await client.set(keyUser, user);
+    await client.set(keyUser, user, TTL);
 
     const keyUsers = { id: 'users', segment: 'users' };
     let value = await client.get(keyUsers);
@@ -146,7 +146,7 @@ export default class User {
       users = value.item;
       users.push(user.id);
     }
-    await client.set(keyUsers, users);
+    await client.set(keyUsers, users, TTL);
     return new User(client, user);
   }
 
@@ -159,14 +159,14 @@ export default class User {
     let value = await client.get(keyUsers);
     if(!value) {
       let users = [];
-      await client.set(keyUsers, users);
+      await client.set(keyUsers, users, TTL);
     }
   }
 
   static async setSessionKey(client, user) {
     const sid = uuidv4();
     const keySession = { id: sid, segment: 'session' };
-    await client.set(keySession, user.id);
+    await client.set(keySession, user.id, TTL);
     return sid
   }
 

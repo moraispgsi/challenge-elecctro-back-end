@@ -263,7 +263,12 @@ const loginHandler = async (request, h) => {
 
   //Creating new user
   const profile = request.auth.credentials.profile;
-  const user = await User.addUser(client, profile, []);
+  let user;
+  if(await User.hasUser(client, profile.id)) {
+    user = await User.getUser(client, profile.id);
+  } else {
+    user = await User.addUser(client, profile, []);
+  }
   const sid = await User.setSessionKey(client, user);
   request.cookieAuth.set({ sid: sid });
   return h.redirect('/');
