@@ -5,9 +5,16 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "npm run build && node index.js",
+    "dev": "npm run build-react && npm run build && node index.js",
+    "dev-server": "npm run build && node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src -d build"
+    "build": "babel server -d lib",
+    "dev-react": "react-scripts start",
+    "build-react": "react-scripts build",
+    "test-react": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "flow": "flow"
   },
   "repository": {
     "type": "git",
@@ -18,7 +25,6 @@
   "bugs": {
     "url": "https://github.com/moraispgsi/challenge-elecctro-back-end/issues"
   },
-  "homepage": "https://github.com/moraispgsi/challenge-elecctro-back-end#readme",
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -39,6 +45,25 @@
     "lout": "henrikdahl/lout#hapi-v17",
     "password-hash": "^1.2.2",
     "uuid": "^3.2.1",
-    "vision": "^5.3.1"
+    "vision": "^5.3.1",
+    "cross-fetch": "^1.1.1",
+    "immutable": "^3.8.2",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-scripts": "1.1.1",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-storage": "^4.1.2",
+    "redux-storage-engine-localstorage": "^1.1.4",
+    "redux-storage-merger-immutablejs": "^1.0.5",
+    "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.66.0"
   }
 }
