@@ -248,10 +248,10 @@ const loginHandler = async (request, h) => {
   }
 
   //Creating new user
-  const profile = request.auth.credentials;
+  const profile = request.auth.credentials.profile;
   const user = await User.addUser(client, profile, []);
-  request.cookieAuth.set({ sid: user.id });
 
+  request.cookieAuth.set({ sid: user.id });
   return h.redirect('/');
 
 };
@@ -278,7 +278,7 @@ const loginRoute = {
 
 const logoutHandler = async (request, h) => {
   request.cookieAuth.clear();
-  return h.redirect(`https://accounts.google.com/logout?&continue=${REDIRECT_URL}`);
+  return h.redirect(`https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=${REDIRECT_URL}`);
 };
 
 const logoutConfig = {
@@ -324,7 +324,6 @@ async function startServer() {
     isSecure: false,
     validateFunc: async (request, session) => {
 
-      console.log('ValidateFunc', session.sid)
       if(!session.sid) {
         return {
           valid: false

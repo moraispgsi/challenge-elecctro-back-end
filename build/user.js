@@ -347,7 +347,7 @@ var User = function () {
             switch (_context6.prev = _context6.next) {
               case 0:
                 user = {
-                  id: (0, _v2.default)(),
+                  id: profile.id,
                   profile: profile,
                   tasks: tasks
                 };

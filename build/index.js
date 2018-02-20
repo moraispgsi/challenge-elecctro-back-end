@@ -479,15 +479,15 @@ var loginHandler = function () {
           case 2:
 
             //Creating new user
-            profile = request.auth.credentials;
+            profile = request.auth.credentials.profile;
             _context5.next = 5;
             return _user2.default.addUser(client, profile, []);
 
           case 5:
             user = _context5.sent;
 
-            request.cookieAuth.set({ sid: user.id });
 
+            request.cookieAuth.set({ sid: user.id });
             return _context5.abrupt('return', h.redirect('/'));
 
           case 8:
@@ -529,7 +529,7 @@ var logoutHandler = function () {
         switch (_context6.prev = _context6.next) {
           case 0:
             request.cookieAuth.clear();
-            return _context6.abrupt('return', h.redirect('https://accounts.google.com/logout'));
+            return _context6.abrupt('return', h.redirect('https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=' + REDIRECT_URL));
 
           case 2:
           case 'end':

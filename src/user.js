@@ -127,7 +127,7 @@ export default class User {
   //Adds an user in the cache
   static async addUser(client, profile, tasks) {
     const user = {
-      id: uuidv4(),
+      id: profile.id,
       profile: profile,
       tasks: tasks,
     };
