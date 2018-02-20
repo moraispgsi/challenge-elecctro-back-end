@@ -353,6 +353,7 @@ async function startServer() {
     redirectTo: '/login',
     redirectOnTry: false,
     isSecure: false,
+    isSameSite: 'Lax',
     validateFunc: async (request, session) => {
 
       if(!session.sid) {

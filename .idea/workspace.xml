@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="899b97ff-e7d4-455e-888d-22da5c48ef9c" name="Default" comment="Fully working back-end and front-end" />
+    <list default="true" id="899b97ff-e7d4-455e-888d-22da5c48ef9c" name="Default" comment="Fully working back-end and front-end">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/index.js" afterPath="$PROJECT_DIR$/server/index.js" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -19,7 +21,7 @@
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" column="10" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="10" />
+              <caret line="10" column="33" lean-forward="false" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -28,8 +30,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="311" column="24" lean-forward="true" selection-start-line="311" selection-start-column="24" selection-end-line="311" selection-end-column="118" />
+            <state relative-caret-position="254">
+              <caret line="355" column="22" lean-forward="false" selection-start-line="355" selection-start-column="22" selection-end-line="355" selection-end-column="22" />
               <folding>
                 <element signature="e#15#38#0" expanded="true" />
               </folding>
@@ -385,12 +387,12 @@
       <updated>1518922021676</updated>
       <workItem from="1518922023415" duration="4577000" />
       <workItem from="1518929063378" duration="102815000" />
-      <workItem from="1519140353777" duration="8049000" />
+      <workItem from="1519140353777" duration="8604000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115441000" />
+    <option name="totallyTimeSpent" value="115996000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -763,8 +765,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="311" column="24" lean-forward="true" selection-start-line="311" selection-start-column="24" selection-end-line="311" selection-end-column="118" />
+        <state relative-caret-position="254">
+          <caret line="355" column="22" lean-forward="false" selection-start-line="355" selection-start-column="22" selection-end-line="355" selection-end-column="22" />
           <folding>
             <element signature="e#15#38#0" expanded="true" />
           </folding>
@@ -774,7 +776,7 @@
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="10" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="10" />
+          <caret line="10" column="33" lean-forward="false" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="33" />
           <folding />
         </state>
       </provider>
