@@ -8,7 +8,7 @@ This project was build using Hapi.js, a web server framework. The challenge was 
 
 ### The result
 The result is hosted in Heroku with a Redis database. It can be found at 
-<https://elecctro-back-end.herokuapp.com//>.
+<https://elecctro-back-end.herokuapp.com/>.
 
 
 ## Built With
